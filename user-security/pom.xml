@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.anabatic.usm</groupId>
+  <artifactId>anabatic-usm</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>scp://webhost.company.com/www/website</url>
+    </site>
+  </distributionManagement>
+
+  <properties>
+    <java-version>1.7</java-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mybatis.version>3.4.1</mybatis.version>
+	<mybatis-spring.version>1.3.0</mybatis-spring.version>
+	<org.springframework.version>4.3.2.RELEASE</org.springframework.version>
+	<log4j.version>1.2.17</log4j.version>
+	<slf4j.version>1.6.1</slf4j.version>
+  </properties>
+  <modules>
+  	<module>usm-api</module>
+  	<module>usm-businesslogic</module>
+  	<module>usm-persistence</module>
+    <module>usm-service</module>
+  </modules>
+</project>
