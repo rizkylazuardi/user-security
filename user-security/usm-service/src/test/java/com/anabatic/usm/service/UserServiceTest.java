@@ -48,8 +48,10 @@ public class UserServiceTest {
 		 	userService.openDB();
 	        MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
 	        //assert true
-	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.is(0));
+	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0)  );
+	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.equalTo(0) );
 	        userService.closeDB();
+	        
 	 }
 }
 
