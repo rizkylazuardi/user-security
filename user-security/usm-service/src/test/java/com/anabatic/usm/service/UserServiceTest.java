@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.service.api.UserService;
+import com.anabatic.usm.service.impl.UserServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {AppConfig.class})
@@ -24,7 +27,7 @@ public class UserServiceTest {
 	 ConfigurationDatabase confDb;
 	 
 	 @Test
-	    public void test() {
+	   public void test() {
 		 	try {
 		 		Assert.assertNotNull(confDb);
 				userService.openDB();
@@ -34,6 +37,19 @@ public class UserServiceTest {
 				e.printStackTrace();
 			}finally{
 			userService.closeDB();
+			
 			}
 	    }
+	 
+	 @Test
+	    public void test_ml_always_return_true() {
+
+	        //assert correct type/impl
+		 	userService.openDB();
+	        MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
+	        //assert true
+	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.is(0));
+	        userService.closeDB();
+	 }
 }
+
