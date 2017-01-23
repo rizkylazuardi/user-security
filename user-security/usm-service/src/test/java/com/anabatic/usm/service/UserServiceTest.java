@@ -30,7 +30,8 @@ public class UserServiceTest {
 	   public void test() {
 		 	try {
 		 		Assert.assertNotNull(confDb);
-				userService.openDB();
+				userService.openDB();     
+				
 				int count = userService.getCountUser();
 				Assert.assertNotEquals(0, count);
 			} catch (Exception e) {
