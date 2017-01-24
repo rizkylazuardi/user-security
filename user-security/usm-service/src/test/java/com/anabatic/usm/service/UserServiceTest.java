@@ -51,6 +51,7 @@ public class UserServiceTest {
 	        //assert true
 	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0)  );
 	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.equalTo(0) );
+	        // Untuk komparasi nilai
 	        userService.closeDB();
 	        
 	 }
