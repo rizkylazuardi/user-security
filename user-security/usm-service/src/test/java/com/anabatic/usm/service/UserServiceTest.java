@@ -50,7 +50,8 @@ public class UserServiceTest {
 	        MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
 	        //assert true
 	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0)  );
-	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.equalTo(0) );
+	        // untuk komparasi nilai
+	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(2)  );
 	        userService.closeDB();
 	        
 	 }
