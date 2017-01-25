@@ -13,6 +13,7 @@ import org.hamcrest.Matchers;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.service.api.UserService;
 import com.anabatic.usm.service.impl.UserServiceImpl;
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {AppConfig.class})
