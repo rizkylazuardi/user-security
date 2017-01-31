@@ -12,7 +12,7 @@ import com.anabatic.usm.persistence.annotation.TableAnnotation;
 
 
 @TableAnnotation(tableName="core_user")
-public class CoreUser extends GenericObject{
+public class CoreUser extends BaseModel{
 	private static final long serialVersionUID = 355427026819625452L;
 	 private Long id;
 	    private String username;
