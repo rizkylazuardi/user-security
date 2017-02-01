@@ -5,6 +5,7 @@ import com.anabatic.usm.persistence.annotation.TableAnnotation;
 @TableAnnotation(tableName="core_menu")
 public class CoreMenu extends BaseModel{
 
+
 	/**
 	 * 
 	 */
