@@ -11,6 +11,8 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
+import com.anabatic.usm.persistence.entity.CoreMenu;
+import com.anabatic.usm.service.api.MenuService;
 import com.anabatic.usm.service.api.UserService;
 import com.anabatic.usm.service.impl.UserServiceImpl;
 import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
@@ -24,6 +26,10 @@ public class UserServiceTest {
 	 @Qualifier("userService")
 	 UserService userService;
 
+	 @Autowired
+	 @Qualifier("MenuService")
+	 MenuService menuService;
+	 
 	 @Autowired
 	 ConfigurationDatabase confDb;
 	 
@@ -51,7 +57,19 @@ public class UserServiceTest {
 	        MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
 	        //assert true
 	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0)  );
-	        userService.closeDB();
+	        userService.closeDB();System.out.println();
+	  }
+	 
+	 @Test
+	    public void testing_get_menu_by_parent() {
+		
+	        //assert correct type/impl
+		 	menuService.openDB();
+	        
+		 	CoreMenu menu = menuService.getMenuById("asjdk");
+		 	System.out.println(menu.toString());
+		 	
+		 	menuService.closeDB();System.out.println();
 	  }
 }
 
