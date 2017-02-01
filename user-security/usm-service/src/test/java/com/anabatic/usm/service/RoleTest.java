@@ -32,6 +32,7 @@ public class RoleTest {
 
 	CoreRole dataAdd = new CoreRole(); 
 	CoreRole dataUpdate = new CoreRole();
+	CoreRole dataDelete =new CoreRole();
 	 @Test
 	   public void testGetRoleById() {
 		 	try {
@@ -145,7 +146,20 @@ public class RoleTest {
 				 roleService.closeDB();
 			 }
 	} 
-		@Test
+		
+	 @Before
+	 public void dataDelete(){
+		 dataDelete.setId(123L);
+		 dataDelete.setStatus("hist");		 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 @Test
 		public void testSoftDelete(){
 			try{
 
