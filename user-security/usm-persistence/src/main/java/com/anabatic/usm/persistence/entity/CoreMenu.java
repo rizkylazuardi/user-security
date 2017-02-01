@@ -2,6 +2,7 @@ package com.anabatic.usm.persistence.entity;
 
 public class CoreMenu extends BaseModel{
 
+
 	/**
 	 * 
 	 */

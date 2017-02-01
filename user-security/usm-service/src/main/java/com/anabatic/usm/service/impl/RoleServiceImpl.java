@@ -18,10 +18,70 @@ import com.anabatic.usm.service.api.RoleService;
 			CoreRole result =new CoreRole();
 			try {
 				result = dao.getRoleById(param);
+		
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
 			}
 			return result;
 		}
-}
+
+		@Override
+		public CoreRole getRoleByName(Object param) {
+			// TODO Auto-generated method stub
+			CoreRole result =new CoreRole();
+			try {
+				result = dao.getRoleByName(param);
+					} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+			return result;
+
+		}
+
+	
+		
+
+		@Override
+		public boolean updateRoleById(Object param) {
+			// TODO Auto-generated method stub
+		boolean result=true;
+		try{
+			result = dao.updateById(param);
+		} catch (Exception e) {
+	e.printStackTrace();
+	return true;
+		}
+		
+		return result;
+			
+			
+			
+			
+			
+
+		}
+
+		@Override
+		public boolean updateSoftDelete(Object param) {
+			// TODO Auto-generated method stub
+			boolean result=true;
+			try{
+				result = dao.updateSoftDelete(param);
+			} catch (Exception e) {
+		e.printStackTrace();
+		return true;
+			}
+			
+			return result;
+				
+		}
+		
+
+		
+		}
+
+				
+				
+
