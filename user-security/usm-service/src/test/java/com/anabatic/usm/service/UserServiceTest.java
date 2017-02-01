@@ -45,14 +45,13 @@ public class UserServiceTest {
 	 
 	 @Test
 	    public void test_ml_always_return_true() {
-
+		
 	        //assert correct type/impl
 		 	userService.openDB();
 	        MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
 	        //assert true
 	        MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0)  );
 	        userService.closeDB();
-	        
-	 }
+	  }
 }
 

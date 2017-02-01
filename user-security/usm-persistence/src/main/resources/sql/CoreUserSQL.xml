@@ -5,12 +5,25 @@
 	<cache />
 	
 	<sql id="fieldNames">
-		(userid,"isActive","isLogin")
+		(<!-- authoriser,authorize_time, -->created_by,created_time,status,updated_by,updated_time,version,
+			account_enabled,account_non_expired,account_non_locked,activebranch,credentials_non_expired,			
+				email,facebook,first_name,ip_address,last_change_password,			
+					last_name,login_attempt,middle_name,msisdn,password,password_hint,password_salt,personnel_code,preferred_locale,sec_answer,			
+		sec_question,session_id,session_timeout,username,active_role_id,is_activated,activated_date)
 	</sql>
 	<sql id="valueName">
-		(#{userid},#{isActive},#{isLogin})
+		(<!-- '${authoriser}',#{authorizeTime}, -->'${createdBy}',#{createdTime},'${status}','${updatedBy}',#{updatedTime},#{version},
+		#{accountEnabled},#{accountNonExpired},#{accountNonLocked},'${activeBranch}',#{credentialsNonExpired},
+		'${email}','${facebook}','${firstName}','${ipAddress}',#{lastChangePassword},
+		'${lastName}',#{loginAttempt},'${middleName}','${msisdn}','${password}','${passwordHint}','${passwordSalt}','${personnelCode}','${preferredLocale}','${secAnswer}',
+		'${secQuestion}','${session}','${sessionTimeout}','${username}',#{activeRole.id},#{isActivated},#{activated_date}
+		)
 	</sql>
 	<sql id="updateFieldName">
+				status = '${status}',updated_by='${updatedBy}',updated_time=#{updatedTime},version=#{version},account_enabled=#{accountEnabled},
+				account_non_expired = #{account_non_expired}, account_non_locked=#{accountNonLocked},activebranch='${activeBranch}',credentials_non_expired=#{credentialsNonExpired}, 
+				email='${email}',facebook='${facebook}',first_name='${firstName}',ip_address='${ipAddress}',last_name='${lastName}',middle_name='${middleName}',msisdn='${msisdn}',
+				personnel_code='${personnelCode}'
 				userid = #{userid},
 				"isActive" = #{isActive},
 				"isLogin" = #{isLogin}
