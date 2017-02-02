@@ -128,6 +128,44 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	public void updateUserTest(){
+		CoreUser user = new CoreUser();
+		user.setId(146L);
+		user.setUsername("maman");
+		user.setSecQuestion(SecurityQuestionEnum.QUESTION_BORN_PLACE);
+		user.setSecAnswer("apartment");
+		user.setUpdatedBy(user.getUsername());
+		user.setUpdatedTime(new Date());
+		user.setActivated(true);
+		user.setAccountEnabled(true);
+		user.setMsisdn("08123456789113");
+		user.setAccountNonLocked(true);
+		user.setAccountNonExpired(true);
+		
+		Long idRole = 74L;
+		CoreRole role = roleService.getRoleByID(idRole);
+		user.setActiveRole(role);
+		
+		try {
+			Assert.assertNotNull(confDb);
+			userService.openDB();
+			userService.insert(user);
+			Assert.assertNotNull(user.getUsername());
+			Assert.assertNotNull(user.getPassword());
+			
+			CoreUser updatedUser = userService.getByUsername(user.getUsername());
+			Assert.assertEquals(user.getUsername(), updatedUser.getUsername());
+			System.out.println(updatedUser.toString());
+			System.out.println(user.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));
+		} finally {
+			userService.closeDB();
+		}
+		
+	}
+	@Test
 	public void insertUserTest(){
 		CoreUser user = new CoreUser();
 		user.setUsername("mimin");

@@ -47,10 +47,30 @@
 		)
 	</sql>
 	<sql id="updateFieldName">
-				status = '${status}',updated_by='${updatedBy}',updated_time=#{updatedTime},version=#{version},account_enabled=#{accountEnabled},
-				account_non_expired = #{account_non_expired}, account_non_locked=#{accountNonLocked},activebranch='${activeBranch}',credentials_non_expired=#{credentialsNonExpired}, 
-				email='${email}',facebook='${facebook}',first_name='${firstName}',ip_address='${ipAddress}',last_name='${lastName}',middle_name='${middleName}',msisdn='${msisdn}',
-				personnel_code='${personnelCode}', userid = #{userid}, "isActive" = #{isActive}, "isLogin" = #{isLogin}
+				status = '${status}',
+				updated_by='${updatedBy}',
+				updated_time=#{updatedTime},
+				version=#{version},
+				account_enabled=#{accountEnabled},
+				account_non_locked=#{accountNonLocked},
+				activebranch='${activeBranch}',
+				credentials_non_expired=#{credentialsNonExpired}, 
+				email='${email}',
+				facebook='${facebook}',
+				first_name='${firstName}',
+				ip_address='${ipAddress}',
+				last_name='${lastName}',
+				middle_name='${middleName}',
+				msisdn='${msisdn}',
+				personnel_code='${personnelCode}', 
+				"username" = '${username}', 
+				"preferred_locale" = '${preferredLocale}' , 
+				"sec_answer" = '${secAnswer}', 
+				"sec_question" = '${secQuestion.value}',
+				"session_timeout" = '${sessionTimeout}', 
+				account_non_expired = #{accountNonExpired}, 
+				"is_activated" = #{isActivated}, 
+				"active_role_id" = #{activeRole.id}
 	</sql>
 	<select id="findAll" resultType="CoreUser">
 		<include refid="Generic.findAll"></include>
@@ -68,12 +88,6 @@
 	<delete id="delete">
 		<include refid="Generic.delete"></include>
 	</delete>
-	<update id="updateShowBalance">
-		update core_user set "showBalance" = #{showBalance} where userid = '${userid}'
-	</update>
-	<update id="updateLanguage">
-		update core_user set "language" = #{language} where userid = '${userid}'
-	</update>
 	<select id="getCountUser" resultType="java.lang.Integer">
 		select count(1) from core_user 
 	</select>
@@ -95,5 +109,5 @@
 	<update id="userSoftDelete">
 		update core_user set "status" = 'HIST' where id = #{id}
 	</update>
-
+	
 </mapper>

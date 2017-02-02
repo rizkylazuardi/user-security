@@ -9,5 +9,5 @@ public interface UserService extends GenericManager<CoreUser>{
 	public CoreUser getByUsername(String username);
 	public CoreUser getById(Long id);
 	public List<CoreUser> getAllUser();
-	public void userSoftDelete(Long id);
+	public boolean userSoftDelete(Object param);
 }
