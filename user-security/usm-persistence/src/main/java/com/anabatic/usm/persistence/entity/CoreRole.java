@@ -1,8 +1,5 @@
 package com.anabatic.usm.persistence.entity;
 
-import java.util.List;
-
-
 public class CoreRole extends BaseModel {
 
 	/**
