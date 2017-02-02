@@ -1,11 +1,8 @@
 package com.anabatic.usm.persistence.entity;
 
-<<<<<<< HEAD
-=======
 import com.anabatic.usm.persistence.annotation.TableAnnotation;
 
 @TableAnnotation(tableName="core_role")
->>>>>>> origin/master
 public class CoreRole extends BaseModel {
 
 	/**
