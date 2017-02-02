@@ -4,6 +4,8 @@
 <mapper namespace="com.anabatic.usm.persistence.dao.UserMapper">
 	<cache />
 	
+	
+	
 	<sql id="fieldNames">
 		(<!-- authoriser,authorize_time, -->created_by,created_time,status,updated_by,updated_time,version,
 			account_enabled,account_non_expired,account_non_locked,activebranch,credentials_non_expired,			
@@ -50,8 +52,13 @@
 	<update id="updateLanguage">
 		update core_user set "language" = #{language} where userid = '${userid}'
 	</update>
-	
 	<select id="getCountUser" resultType="java.lang.Integer">
 		select count(1) from core_user 
+	</select>
+	<select id="getByUsername" resultType="CoreUser">
+		select core_user where username = '${username}'
+	</select>
+	<select id="getById" resultType="CoreUser">
+		select core_user where id = #{id}
 	</select>
 </mapper>
