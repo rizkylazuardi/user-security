@@ -91,5 +91,11 @@
 	FROM core_user a
 	JOIN core_role b on a.active_role_id = b.id WHERE a.status = 'LIVE' order by a.id
 	</select>
+<<<<<<< HEAD
 	
+=======
+	<update id="userSoftDelete">
+		update core_user set "status" = 'hist' where id = #{id}
+	</update>
+>>>>>>> origin/master
 </mapper>

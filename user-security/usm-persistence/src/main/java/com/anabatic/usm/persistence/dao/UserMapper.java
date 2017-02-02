@@ -11,4 +11,6 @@ public interface UserMapper extends GenericMapper<CoreUser, Long>{
 	public CoreUser getByUsername(String username);
 	public CoreUser getById(Long id);
 	public List<CoreUser> getAllUser();
+	public void userSoftDelete(Long id);
+
 }

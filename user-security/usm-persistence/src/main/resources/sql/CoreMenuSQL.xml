@@ -66,4 +66,5 @@
 	<select id="getMenuByParent" resultType="CoreMenu">
 	select*from Core_menu where parent_menu_code='${parentMenuCode}'
 	</select>
+	
 </mapper>

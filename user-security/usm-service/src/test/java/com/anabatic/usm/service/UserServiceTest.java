@@ -96,7 +96,19 @@ public class UserServiceTest {
 		} finally {
 			userService.closeDB();
 		}
-	}
+	 }
+	 
+	 @Test
+	 public void userSoftDeleteTest(){
+		 	try {
+		 		Assert.assertNotNull(confDb);
+				userService.openDB();  
+				userService.userSoftDelete(1L);
+			}finally{
+			userService.closeDB();
+			}
+	 }
+
 
 	@Test
 	public void getAllUserTest() {
