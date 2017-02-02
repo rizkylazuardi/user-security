@@ -3,8 +3,6 @@ package com.anabatic.usm.persistence.entity;
  * User's entity
  */
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.annotation.IdentityAnnotation;
@@ -39,8 +37,6 @@ public class CoreUser extends BaseModel {
 	private Date activated_date;
 	private SecurityQuestionEnum secQuestion;
 	private String secAnswer;
-	private Set<CustomerSecurityQuestion> securityQuestions;
-	private Set<CoreRole> roles = new HashSet<CoreRole>();
 	private CoreRole activeRole;
 	private String preferredLocale;
 	private Integer loginAttempt = 0;
@@ -253,22 +249,6 @@ public class CoreUser extends BaseModel {
 		this.secAnswer = secAnswer;
 	}
 
-	public Set<CustomerSecurityQuestion> getSecurityQuestions() {
-		return securityQuestions;
-	}
-
-	public void setSecurityQuestions(Set<CustomerSecurityQuestion> securityQuestions) {
-		this.securityQuestions = securityQuestions;
-	}
-
-	public Set<CoreRole> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<CoreRole> roles) {
-		this.roles = roles;
-	}
-
 	public CoreRole getActiveRole() {
 		return activeRole;
 	}
@@ -360,7 +340,7 @@ public class CoreUser extends BaseModel {
 				+ ", accountNonExpired=" + accountNonExpired + ", accountNonLocked=" + accountNonLocked
 				+ ", credentialsNonExpired=" + credentialsNonExpired + ", isActivated=" + isActivated
 				+ ", activated_date=" + activated_date + ", secQuestion=" + secQuestion + ", secAnswer=" + secAnswer
-				+ ", securityQuestions=" + securityQuestions + ", roles=" + roles + ", activeRole=" + activeRole
+				+ ", activeRole=" + activeRole
 				+ ", preferredLocale=" + preferredLocale + ", loginAttempt=" + loginAttempt + ", ipAddress=" + ipAddress
 				+ ", session=" + session + ", activeBranch=" + activeBranch + ", oldPassword=" + oldPassword
 				+ ", newPassword=" + newPassword + ", confirmNewPassword=" + confirmNewPassword + ", facebook="
@@ -401,10 +381,8 @@ public class CoreUser extends BaseModel {
 		result = prime * result + ((passwordSalt == null) ? 0 : passwordSalt.hashCode());
 		result = prime * result + ((personnelCode == null) ? 0 : personnelCode.hashCode());
 		result = prime * result + ((preferredLocale == null) ? 0 : preferredLocale.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		result = prime * result + ((secAnswer == null) ? 0 : secAnswer.hashCode());
 		result = prime * result + ((secQuestion == null) ? 0 : secQuestion.hashCode());
-		result = prime * result + ((securityQuestions == null) ? 0 : securityQuestions.hashCode());
 		result = prime * result + ((session == null) ? 0 : session.hashCode());
 		result = prime * result + ((sessionTimeout == null) ? 0 : sessionTimeout.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -555,22 +533,12 @@ public class CoreUser extends BaseModel {
 				return false;
 		} else if (!preferredLocale.equals(other.preferredLocale))
 			return false;
-		if (roles == null) {
-			if (other.roles != null)
-				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
 		if (secAnswer == null) {
 			if (other.secAnswer != null)
 				return false;
 		} else if (!secAnswer.equals(other.secAnswer))
 			return false;
 		if (secQuestion != other.secQuestion)
-			return false;
-		if (securityQuestions == null) {
-			if (other.securityQuestions != null)
-				return false;
-		} else if (!securityQuestions.equals(other.securityQuestions))
 			return false;
 		if (session == null) {
 			if (other.session != null)

@@ -1,5 +1,7 @@
 package com.anabatic.usm.service;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,15 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
-import com.anabatic.usm.persistence.entity.CoreMenu;
-import com.anabatic.usm.service.api.MenuService;
+import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.UserService;
 import com.anabatic.usm.service.impl.UserServiceImpl;
-import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {AppConfig.class})
@@ -26,9 +24,6 @@ public class UserServiceTest {
 	 @Qualifier("userService")
 	 UserService userService;
 
-	 @Autowired
-	 @Qualifier("MenuService")
-	 MenuService menuService;
 	 
 	 @Autowired
 	 ConfigurationDatabase confDb;
@@ -60,16 +55,39 @@ public class UserServiceTest {
 	        userService.closeDB();System.out.println();
 	  }
 	 
+	 
 	 @Test
-	    public void testing_get_menu_by_parent() {
-		
-	        //assert correct type/impl
-		 	menuService.openDB();
-	        
-		 	CoreMenu menu = menuService.getMenuById("asjdk");
-		 	System.out.println(menu.toString());
-		 	
-		 	menuService.closeDB();System.out.println();
-	  }
+	 public void getByUsernameTest(){
+		 	try {
+		 		Assert.assertNotNull(confDb);
+				userService.openDB();  
+				CoreUser user = new CoreUser();
+				user = userService.getByUsername("admin");
+				Assert.assertNotNull(user);
+				System.out.println(user.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+				MatcherAssert.assertThat(e, Matchers.equalTo(null));
+			}finally{
+			userService.closeDB();
+			}
+	 }
+	 
+	 @Test
+	 public void getByIdTest(){
+		 	try {
+		 		Assert.assertNotNull(confDb);
+				userService.openDB();  
+				CoreUser user = new CoreUser();
+				user = userService.getById(1L);
+				Assert.assertNotNull(user);
+				System.out.println(user.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+				MatcherAssert.assertThat(e, Matchers.equalTo(null));
+			}finally{
+			userService.closeDB();
+			}
+	 }
 }
 

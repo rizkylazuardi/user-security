@@ -56,9 +56,9 @@
 		select count(1) from core_user 
 	</select>
 	<select id="getByUsername" resultType="CoreUser">
-		select core_user where username = '${username}'
+		select * from core_user where username = #{username}
 	</select>
 	<select id="getById" resultType="CoreUser">
-		select core_user where id = #{id}
+		select * from core_user where id = #{id}
 	</select>
 </mapper>

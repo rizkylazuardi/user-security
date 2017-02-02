@@ -21,4 +21,26 @@ public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUs
 		}
 		return result;
 	}
+
+	@Override
+	public CoreUser getByUsername(String username) {
+		CoreUser user = new CoreUser();
+		try{
+			user = dao.getByUsername(username);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	@Override
+	public CoreUser getById(Long id) {
+		CoreUser user = new CoreUser();
+		try{
+			user = dao.getById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return user;
+	}
 }

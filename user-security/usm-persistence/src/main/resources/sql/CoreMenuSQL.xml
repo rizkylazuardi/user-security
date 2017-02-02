@@ -60,7 +60,7 @@
 	select*from Core_menu where id=#{id}
 	</select>
 	
-	<select id="getMenuByMenuCode" resultType="CoreMenu">
+	<select id="getMenuByMenuCode" parameterType="String" resultType="CoreMenu">
 	select*from Core_menu where menu_code='${menuCode}'
 	</select>
 	<select id="getMenuByParent" resultType="CoreMenu">
