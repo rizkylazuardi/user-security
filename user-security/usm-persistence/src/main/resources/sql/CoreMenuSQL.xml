@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anabatic.usm.persistence.dao.MenuMapper">
+	<cache />
+	
+	<sql id="fieldNames">
+		 ("menu_code", "parent_menu_code", "description", "title", "title_en", 
+      	  "menu_level", "menu_order", "action", "appid")
+ 
+	</sql>
+	<sql id="valueName">
+		(#{menuCode}, #{parentMenuCode}, #{description}, #{title}, #{titleEn}, 
+         #{menuLevel}, #{menuOrder}, #{action}, #{appid})   
+	</sql>
+	<sql id="updateFieldName">
+				
+				
+				"menu_code" = #{menuCode},
+				"parent_menu_code" = #{parentMenuCode},
+				"description" = #{description},
+				"title" = #{title},
+				"title_en" = #{titleEn},
+				"menu_level" = #{menuLevel},
+				"menu_order" = #{menuOrder},
+				"action" = #{action},
+				"appid" = #{appid}
+				
+			
+				
+				
+	</sql>
+	<select id="findAll" resultType="CoreMenu">
+		<include refid="Generic.findAll"></include>
+	</select>
+	<insert id="insert" >
+		<include refid="Generic.insert">
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.MenuMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.MenuMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.MenuMapper.updateFieldName"/>
+		</include>
+	</insert>
+	<select id="get" resultType="CoreMenu">
+		<include refid="Generic.get"></include>
+	</select>
+	<delete id="delete">
+		<include refid="Generic.delete"></include>
+	</delete>
+	<update id="updateMenuByDimas">
+		update core_menu set "title" = #{title} where id = #{id}
+	</update>
+	<update id="updateSoftDelete">
+		update core_menu set "status" = #{status} where id= '${id}'
+	</update>
+	
+	<select id="getAllMenu" resultType="java.lang.Integer">
+		select count(1) from core_menu
+	</select>
+	<select id="getMenuById" resultType="CoreMenu">
+	select*from Core_menu where id=#{id}
+	</select>
+	
+	<select id="getMenuByMenuCode" resultType="CoreMenu">
+	select*from Core_menu where menu_code='${menuCode}'
+	</select>
+	<select id="getMenuByParent" resultType="CoreMenu">
+	select*from Core_menu where parent_menu_code='${parentMenuCode}'
+	</select>
+</mapper>

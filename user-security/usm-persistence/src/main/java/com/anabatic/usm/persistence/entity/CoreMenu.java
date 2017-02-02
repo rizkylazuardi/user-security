@@ -1,6 +1,10 @@
 package com.anabatic.usm.persistence.entity;
 
+import com.anabatic.usm.persistence.annotation.TableAnnotation;
+
+@TableAnnotation(tableName="core_menu")
 public class CoreMenu extends BaseModel{
+
 
 	/**
 	 * 
@@ -70,6 +74,7 @@ public class CoreMenu extends BaseModel{
 	public void setAction(String action) {
 		this.action = action;
 	}
+	
 	public Long getAppid() {
 		return appid;
 	}
