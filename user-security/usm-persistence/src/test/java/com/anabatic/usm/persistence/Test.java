@@ -1,7 +1,6 @@
 package com.anabatic.usm.persistence;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.anabatic.usm.persistence.config.DataConfig;
 
