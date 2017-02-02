@@ -4,6 +4,31 @@
 <mapper namespace="com.anabatic.usm.persistence.dao.UserMapper">
 	<cache />
 	
+	<resultMap type="CoreUser" id="UserResult">
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="firstName" column="first_name"/>
+		<result property="middleName" column="middle_name"/>
+		<result property="lastName" column="last_name"/>
+		<result property="email" column="email"/>
+		<result property="msisdn" column="msisdn"/>
+		<result property="status" column="status"/>
+		<result property="facebook" column="facebook"/>
+		<result property="secQuestion" column="sec_question"/>
+		<result property="secAnswer" column="sec_answer"/>
+		<result property="lastLogon" column="last_logon"/>
+		<result property="activeBranch" column="activeBranch"/>
+		<result property="credentialsNonExpired" column="credentials_non_expired"/>
+		<result property="loginAttempt" column="login_attempt"/>
+		<collection property="activeRole" column="id" ofType="CoreRole" resultMap="RoleResult"/>
+	</resultMap>
+	
+	<resultMap type="CoreRole" id="RoleResult">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<result property="description_en" column="description_en"/>
+	</resultMap>
 	
 	
 	<sql id="fieldNames">
@@ -18,17 +43,14 @@
 		#{accountEnabled},#{accountNonExpired},#{accountNonLocked},'${activeBranch}',#{credentialsNonExpired},
 		'${email}','${facebook}','${firstName}','${ipAddress}',#{lastChangePassword},
 		'${lastName}',#{loginAttempt},'${middleName}','${msisdn}','${password}','${passwordHint}','${passwordSalt}','${personnelCode}','${preferredLocale}','${secAnswer}',
-		'${secQuestion}','${session}','${sessionTimeout}','${username}',#{activeRole.id},#{isActivated},#{activated_date}
+		'${secQuestion.value}','${session}','${sessionTimeout}','${username}',#{activeRole.id},#{isActivated},#{activated_date}
 		)
 	</sql>
 	<sql id="updateFieldName">
 				status = '${status}',updated_by='${updatedBy}',updated_time=#{updatedTime},version=#{version},account_enabled=#{accountEnabled},
 				account_non_expired = #{account_non_expired}, account_non_locked=#{accountNonLocked},activebranch='${activeBranch}',credentials_non_expired=#{credentialsNonExpired}, 
 				email='${email}',facebook='${facebook}',first_name='${firstName}',ip_address='${ipAddress}',last_name='${lastName}',middle_name='${middleName}',msisdn='${msisdn}',
-				personnel_code='${personnelCode}'
-				userid = #{userid},
-				"isActive" = #{isActive},
-				"isLogin" = #{isLogin}
+				personnel_code='${personnelCode}', userid = #{userid}, "isActive" = #{isActive}, "isLogin" = #{isLogin}
 	</sql>
 	<select id="findAll" resultType="CoreUser">
 		<include refid="Generic.findAll"></include>
@@ -56,9 +78,18 @@
 		select count(1) from core_user 
 	</select>
 	<select id="getByUsername" resultType="CoreUser">
-		select * from core_user where username = #{username}
+		select * from core_user where username = #{username} AND status='LIVE'
 	</select>
 	<select id="getById" resultType="CoreUser">
-		select * from core_user where id = #{id}
+		select * from core_user where id = #{id} AND status='LIVE'
 	</select>
+	
+	<select id="getAllUser" resultMap="UserResult">
+	SELECT a.username, a.password, a.first_name, a.middle_name, a.last_name, a.email, a.msisdn, a.status, a.active_role_id,
+		a.facebook, a.sec_question, a.sec_answer, a.last_logon, a.activebranch, a.credentials_non_expired, a.login_attempt, a.active_role_id, b.name, 
+		b.description, b.description_en
+	FROM core_user a
+	JOIN core_role b on a.active_role_id = b.id WHERE a.status = 'LIVE' order by a.id
+	</select>
+	
 </mapper>

@@ -1,4 +1,7 @@
 package com.anabatic.usm.service.impl;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.anabatic.usm.persistence.dao.UserMapper;
@@ -38,6 +41,17 @@ public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUs
 		CoreUser user = new CoreUser();
 		try{
 			user = dao.getById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	@Override
+	public List<CoreUser> getAllUser() {
+		List<CoreUser> user = new ArrayList<CoreUser>();
+		try{
+			user = dao.getAllUser();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
