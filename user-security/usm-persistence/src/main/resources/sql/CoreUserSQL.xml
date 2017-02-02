@@ -61,4 +61,7 @@
 	<select id="getById" resultType="CoreUser">
 		select * from core_user where id = #{id}
 	</select>
+	<update id="userSoftDelete">
+		update core_user set "status" = 'hist' where id = #{id}
+	</update>
 </mapper>

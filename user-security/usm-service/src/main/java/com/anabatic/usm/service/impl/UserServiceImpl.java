@@ -43,4 +43,14 @@ public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUs
 		}
 		return user;
 	}
+
+	@Override
+	public void userSoftDelete(Long id) {
+		// TODO Auto-generated method stub
+		try {
+			dao.userSoftDelete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
