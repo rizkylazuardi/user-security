@@ -143,7 +143,7 @@ public class MenuTest {
 		 }
 		 
 		 if(ex != null){
-			 	throw ex;
+			 	
 		 }else{
 		 menuService.insert(dataAdd);
 		 }
@@ -152,7 +152,6 @@ public class MenuTest {
 		
 		 menuService.closeDB();
 		 }	
-}
 
 	
 	@Test

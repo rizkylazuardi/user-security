@@ -83,10 +83,12 @@
 	select*from Core_menu where id=#{id}
 	</select>
 	
+
 	<select id="getMenuByMenuCode" resultMap="menuMap">
 	select*from Core_menu where menu_code='${menuCode}'
 	</select>
 	<select id="getMenuByParent" resultMap="menuMap">
 	select*from Core_menu where parent_menu_code='${parentMenuCode}'
 	</select>
+	
 </mapper>
