@@ -1,12 +1,14 @@
 /**
  * 
  */
-package com.anabatic.usm.businesslogic.validator;
+package com.anabatic.usm.businesslogic.validator.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.anabatic.usm.businesslogic.validator.BaseValidator;
+import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreUser;
@@ -17,7 +19,7 @@ import com.anabatic.usm.service.api.UserService;
  *
  */
 @Component
-public class AddUserValidator extends BaseValidator<CoreUser> implements IUserValidator{
+public class UserValidatorImpl extends BaseValidator<CoreUser> implements IUserValidator{
 
 	@Autowired@Qualifier("userService")
 	private UserService userService;
