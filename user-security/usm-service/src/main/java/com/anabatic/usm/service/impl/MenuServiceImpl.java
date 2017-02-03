@@ -59,11 +59,11 @@ public class MenuServiceImpl extends
 	}
 
 	@Override
-	public boolean updateMenuByDimas(Object param) {
+	public boolean updateMenu(Object param) {
 		// TODO Auto-generated method stub
 		boolean result = true;
 		try {
-			result = dao.updateMenuByDimas(param);
+			result = dao.updateMenu(param);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;

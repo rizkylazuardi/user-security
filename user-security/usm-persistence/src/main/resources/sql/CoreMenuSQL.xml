@@ -2,12 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.anabatic.usm.persistence.dao.MenuMapper">
+
+<resultMap type="CoreMenu" id="menuMap">
+  <result property="menuCode" column="menu_code"/>
+  <result property="parentMenuCode" column="parent_menu_code"/>
+  <result property="description" column="description"/>
+  <result property="title" column="title"/>
+  <result property="titleEn" column="title_en"/>
+  <result property="menuLevel" column="menu_level"/>
+  <result property="menuOrder" column="menu_order"/>
+  <result property="action" column="action"/>
+  <result property="appid" column="appid"/>
+  <result property="createdTime" column="created_time"/>
+  <result property="createBy" column="creatde_by"/>
+  <result property="updatedTime" column="updated_time"/>
+  <result property="updatedBy" column="updated_by"/>
+  <result property="authoriser" column="authoriser"/>
+  <result property="authorizeTime" column="authorize_time"/>
+  <result property="status" column="status"/>
+  <result property="version" column="version"/>
+  
+ </resultMap>
+	
 	<cache />
 	
 	<sql id="fieldNames">
 		 ("menu_code", "parent_menu_code", "description", "title", "title_en", 
       	  "menu_level", "menu_order", "action", "appid")
- 
+ 												
 	</sql>
 	<sql id="valueName">
 		(#{menuCode}, #{parentMenuCode}, #{description}, #{title}, #{titleEn}, 
@@ -27,43 +49,44 @@
 				"appid" = #{appid}
 				
 			
-				
+					
 				
 	</sql>
-	<select id="findAll" resultType="CoreMenu">
+	<select id="findAll" resultMap="menuMap">
 		<include refid="Generic.findAll"></include>
 	</select>
 	<insert id="insert" >
 		<include refid="Generic.insert">
 			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.MenuMapper.fieldNames"/>
+	
 			<property name="valueName" value="com.anabatic.usm.persistence.dao.MenuMapper.valueName"/>
 			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.MenuMapper.updateFieldName"/>
 		</include>
 	</insert>
-	<select id="get" resultType="CoreMenu">
+	<select id="get" resultMap="menuMap">
 		<include refid="Generic.get"></include>
 	</select>
 	<delete id="delete">
 		<include refid="Generic.delete"></include>
 	</delete>
-	<update id="updateMenuByDimas">
+	<update id="updateMenu">
 		update core_menu set "title" = #{title} where id = #{id}
 	</update>
 	<update id="updateSoftDelete">
 		update core_menu set "status" = #{status} where id= '${id}'
 	</update>
 	
-	<select id="getAllMenu" resultType="java.lang.Integer">
+	<select id="getAllMenu" resultMap="java.lang.Integer">
 		select count(1) from core_menu
 	</select>
-	<select id="getMenuById" resultType="CoreMenu">
+	<select id="getMenuById" resultMap="menuMap">
 	select*from Core_menu where id=#{id}
 	</select>
 	
-	<select id="getMenuByMenuCode" resultType="CoreMenu">
+	<select id="getMenuByMenuCode" resultMap="menuMap">
 	select*from Core_menu where menu_code='${menuCode}'
 	</select>
-	<select id="getMenuByParent" resultType="CoreMenu">
+	<select id="getMenuByParent" resultMap="menuMap">
 	select*from Core_menu where parent_menu_code='${parentMenuCode}'
 	</select>
 </mapper>
