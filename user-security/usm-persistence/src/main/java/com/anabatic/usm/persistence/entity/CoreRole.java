@@ -31,7 +31,7 @@ public class CoreRole extends BaseModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getDescription_en(String description_en) {
+	public String getDescription_en() {
 		return description_en;
 	}
 	public void setDescription_en(String description_en) {

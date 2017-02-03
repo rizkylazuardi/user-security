@@ -35,6 +35,8 @@ public class MenuTest {
 	 ConfigurationDatabase confDb;
 
 	 CoreMenu dataAdd = new CoreMenu();
+	 CoreMenu dataUpdate = new CoreMenu();
+	 CoreMenu dataDelete = new CoreMenu();
 	
 	 private Object e;
 	 
@@ -118,7 +120,7 @@ public class MenuTest {
 	 @Before
 	 public void beforeAdd(){
 		 //data.setId(151l);
-		 dataAdd.setMenuCode("M-008");
+		 //dataAdd.setMenuCode("M-008");
 		 dataAdd.setParentMenuCode("M-002");
 		 dataAdd.setDescription("Menu 008");
 		 dataAdd.setTitle("title tes");
@@ -133,14 +135,26 @@ public class MenuTest {
 	 @Test
 	 public void testAdd(){
 		 menuService.openDB();
+		 
+		 Exception ex = null;
+		 
+		 if(dataAdd.getMenuCode() == null || dataAdd.getMenuCode().equalsIgnoreCase("")){
+			 	ex = new Exception("MenuCode cannot null");
+		 }
+		 
+		 if(ex != null){
+			 	
+		 }else{
 		 menuService.insert(dataAdd);
-		 MatcherAssert.assertThat(e, Matchers.equalTo(null));
-		 	
-		 	menuService.closeDB();
-		 	
-	 }
+		 }
+	 
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));
+		
+		 menuService.closeDB();
+		 }	
 
-	 @Test
+	
+	@Test
 	 public void test(){
 		 try{
 	 CoreMenu data = new CoreMenu();
@@ -148,7 +162,7 @@ public class MenuTest {
 	 data.setId(151L);
 	 data.setTitle("abcd");
 	 menuService.openDB();
-	 menuService.updateMenuByDimas(data);
+	 menuService.updateMenu(data);
 	 MatcherAssert.assertThat(e, Matchers.equalTo(null));
 	 	
 	 	}finally{
