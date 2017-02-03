@@ -1,4 +1,9 @@
-
+usm-api/target
+usm-api/bin
+usm-api/logs/*
+usm-core/target
+usm-core/bin
+usm-core/logs/*
 usm-businesslogic/target
 usm-businesslogic/bin
 usm-businesslogic/logs/*

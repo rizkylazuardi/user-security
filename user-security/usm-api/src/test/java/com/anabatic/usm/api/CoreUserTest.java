@@ -17,7 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.anabatic.usm.businesslogic.validator.IUserValidator;
+
+
+import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
