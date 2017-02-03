@@ -33,21 +33,24 @@ public class RoleTest {
 	CoreRole dataAdd = new CoreRole(); 
 	CoreRole dataUpdate = new CoreRole();
 	CoreRole dataDelete =new CoreRole();
-	 @Test
+	 
+	
+	
+	@Test
 	   public void testGetRoleById() {
 		 	try {
-		 		Assert.assertNotNull(confDb);
-				roleService.openDB();  
-				CoreRole role = new CoreRole();
-				role.setId(123L);
-				role = roleService.getRoleByID(role);
-				Assert.assertNotNull(role);
-			} catch (Exception e) {
-				e.printStackTrace();
-				MatcherAssert.assertThat(e, Matchers.equalTo(null));
-			}finally{
-			roleService.closeDB();
-			
+			 		Assert.assertNotNull(confDb);
+					roleService.openDB();  
+					CoreRole role = new CoreRole();
+					role.setId(123L);
+					role = roleService.getRoleByID(role);
+					Assert.assertNotNull(role);
+				} catch (Exception e) {
+					e.printStackTrace();
+					MatcherAssert.assertThat(e, Matchers.equalTo(null));
+				}finally{
+				roleService.closeDB();
+				
 			}
 	    }
 	 
@@ -60,7 +63,7 @@ public class RoleTest {
 				Assert.assertNotNull(listRole);
 			} catch (Exception e) {
 				e.printStackTrace();
-				MatcherAssert.assertThat(e, Matchers.equalTo(null));
+				MatcherAssert.assertThat(e, Matchers.equalTo (null));
 			}finally{
 			roleService.closeDB();
 			
@@ -91,7 +94,7 @@ public class RoleTest {
 	 	@Before
 	 	public void	beforeAdd(){
 	 	 
-		//data.setId(92L);
+	 		dataAdd.setId(92L);
 		 dataAdd.setName("name1");
 		 dataAdd.setDescription("description1");
 		 dataAdd.setDescription_en("description_en_1");
@@ -102,19 +105,44 @@ public class RoleTest {
 	 @Test
 	 public void testAdd(){
 		 try{
-		 CoreRole data = new CoreRole();
-		 //data.setId(92L);
-		 data.setName("diyaz");
-		 data.setDescription("adas");
-		 data.setDescription_en("adjasd");
-		 roleService.openDB();
-		 roleService.insert(data);
-			} catch (Exception e) {
+			 roleService.openDB();
+			 
+			 Exception ex = null;
+			 
+			 if(dataAdd.getName() == null || dataAdd.getName().equalsIgnoreCase("")){
+				 
+				 ex = new Exception("Name cannot null");
+			 }
+			 
+			  
+			 
+			 if(dataAdd.getDescription() == null || dataAdd.getDescription().equalsIgnoreCase("")){
+				 ex  = new Exception("Description cannot null");
+			 }
+			 
+			 if(ex != null){
+				 Assert.fail(ex.getMessage());
+				 throw ex;
+			 }else{
+				 roleService.insert(dataAdd);
+			 }
+
+			 if(dataAdd.getDescription() == null || dataAdd.getDescription().equalsIgnoreCase("")){
+				 ex = new Exception("Description cannot null");
+			 }
+			 
+			 if(ex != null){
+				 throw ex;
+			 }else{
+				 roleService.insert(dataAdd);
+			 }
+			 
+		} catch (Exception e) {
 				e.printStackTrace();
 				MatcherAssert.assertThat(e, Matchers.equalTo(null));
 	
 		 }finally{	
-		 roleService.closeDB();
+			 roleService.closeDB();
 	 	 }
 	 }
 
@@ -132,13 +160,35 @@ public class RoleTest {
 		 public void testupdateRoleById(){
 			 try{
 			roleService.openDB();
-			CoreRole data = new CoreRole();
-			 data.setId(123L);
-			 data.setDescription("bangjonathan");
-			 data.setDescription_en("bangjonathan");
-			roleService.updateRoleById(data);
-			
-				} catch (Exception e) {
+			Exception ex = null;
+			 
+			 if(dataAdd.getDescription() == null || dataAdd.getDescription().equalsIgnoreCase("")){
+				 ex = new Exception("Description cannot null");
+			 }
+			 
+			 if(dataAdd.getDescription_en() == null || dataAdd.getDescription_en().equalsIgnoreCase("")){
+				 ex = new Exception("Description_en cannot null");
+			 }
+			 
+			 if(ex != null){
+				 throw ex;
+			 }else{
+				 
+			 }
+
+			 
+			 if(dataAdd.getName() == null || dataAdd.getName().equalsIgnoreCase("")){
+				 ex = new Exception("Name cannot null");
+			 }
+			 
+			 if(ex != null){
+				 throw ex;
+			 }else{	
+			roleService.insert(dataUpdate);
+			 	}
+			 
+			 
+			 } catch (Exception e) {
 					e.printStackTrace();
 					MatcherAssert.assertThat(e, Matchers.equalTo(null));
 				
@@ -153,24 +203,23 @@ public class RoleTest {
 		 dataDelete.setStatus("hist");		 
 	 }
 	 
-	 
-	 
-	 
-	 
-	 
-	 
 	 @Test
 		public void testSoftDelete(){
 			try{
 
 			roleService.openDB();
-			CoreRole data= new CoreRole();
-			data.setId(123L);
-			data.setStatus("hist");
-			
-			
-			roleService.updateSoftDelete(data);;
-		
+			Exception ex = null;
+			 
+			 if(dataAdd.getStatus() == null || dataAdd.getStatus().equalsIgnoreCase("")){
+				 ex = new Exception("Status cannot null");
+			 }
+			 
+			 if(ex != null){
+				 throw ex;
+			 }else{
+					
+			roleService.insert(dataDelete);;
+			 }
 			} catch (Exception e) {
 				e.printStackTrace();
 				MatcherAssert.assertThat(e, Matchers.equalTo(null));

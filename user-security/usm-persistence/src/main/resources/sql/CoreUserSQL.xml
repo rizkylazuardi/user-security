@@ -23,10 +23,9 @@
 				status = '${status}',updated_by='${updatedBy}',updated_time=#{updatedTime},version=#{version},account_enabled=#{accountEnabled},
 				account_non_expired = #{account_non_expired}, account_non_locked=#{accountNonLocked},activebranch='${activeBranch}',credentials_non_expired=#{credentialsNonExpired}, 
 				email='${email}',facebook='${facebook}',first_name='${firstName}',ip_address='${ipAddress}',last_name='${lastName}',middle_name='${middleName}',msisdn='${msisdn}',
-				personnel_code='${personnelCode}'
-				userid = #{userid},
-				"isActive" = #{isActive},
-				"isLogin" = #{isLogin}
+				personnel_code='${personnelCode}',preferred_locale='${preferredLocale}',sec_answerr='{secAnswer}',sec_question='{secQuestion}',session='{session}',session_time_out='{sessionTimeOut}',
+				username='{username}',cative_role_id='{ActiveRole.id}',is_activated='{isActivated}',activated_date='{activateDate}'
+				
 	</sql>
 	<select id="findAll" resultType="CoreUser">
 		<include refid="Generic.findAll"></include>
