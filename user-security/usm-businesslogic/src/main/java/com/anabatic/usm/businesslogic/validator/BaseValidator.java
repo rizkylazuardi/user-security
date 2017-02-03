@@ -83,6 +83,5 @@ public abstract class BaseValidator<T> implements IValidator<T> {
 	}
 	
 	protected abstract void validateObject(T object);
-	protected abstract void validateDel(T object);
 	
 }

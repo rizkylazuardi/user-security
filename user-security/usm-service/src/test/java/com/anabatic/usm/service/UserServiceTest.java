@@ -70,6 +70,7 @@ public class UserServiceTest {
 			Assert.assertNotNull(confDb);
 			userService.openDB();
 			CoreUser user = new CoreUser();
+			
 			user = userService.getByUsername("admin");
 			Assert.assertNotNull(user);
 			System.out.println(user.toString());

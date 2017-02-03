@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
+import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.UserService;
 
@@ -22,19 +24,17 @@ public class AddUserValidator extends BaseValidator<CoreUser> implements IUserVa
 	
 	@Override
 	protected void validateObject(CoreUser object) {
+		CoreUser user = userService.getByUsername(object.getUsername());
+		if(user!=null){
+			error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_USED.getCode(), 
+					ErrorCodeEnum.USERNAME_USED.getDefaultMsg()));
+		}
 		
 	}
 
 	@Override
-	protected void validateDel(CoreUser object) {
+	public void validateEdit(CoreUser object) {
 		
 	}
-
-	@Override
-	public void validateEdit() {
-		
-	}
-	
-	
 
 }
