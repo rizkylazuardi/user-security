@@ -4,6 +4,23 @@
 <mapper namespace="com.anabatic.usm.persistence.dao.RoleMapper">
 	<cache />
 	
+	
+		<resultMap type="CoreRole" id="RoleMap">
+  		<result property="id" column="id"/>
+ 	    <result property="name" column="name"/>
+ 	    <result property="description" column="descripton"/>
+  	    <result property="description_en" column="description_en"/>
+  	    <result property="createdTime" column="created_time"/>
+ 		<result property="createdBy" column="created_by"/>
+ 		<result property="updatedTime" column="update_time"/>
+		<result property="updatedBy" column="update_by"/>
+ 		<result property="authoriser" column="authoriser"/>
+ 		<result property="authorizeTime" column="authorize_time"/>
+ 		<result property="status" column="status"/>
+ 		<result property="version" column="version"/>
+ </resultMap>
+ 
+ 
 	<sql id="fieldNames">
 		("name","description","description_en")
 	</sql>
@@ -15,7 +32,7 @@
 				"description"=#{description},
 				"description_en"=#{description_en}
 	</sql>
-	<select id="findAll" resultType="CoreRole">
+	<select id="findAll" resultMap="RoleMape">
 		<include refid="Generic.findAll"></include>
 	</select>
 	<insert id="insert" >
@@ -25,7 +42,7 @@
 			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.RoleMapper.updateFieldName"/>
 		</include>
 	</insert>
-	<select id="get" resultType="CoreRole">
+	<select id="get" resultMap="RoleMape">
 		<include refid="Generic.get"></include>
 	</select>
 	<delete id="delete">
@@ -43,10 +60,10 @@
 		select count(1) from core_role 
 	</select>
 	
-	<select id="getRoleById" resultType="CoreRole">
+	<select id="getRoleById" resultMap="RoleMape">
 		select * from core_role where id=#{id}
 	</select>
-	<select id="getRoleByName" resultType="CoreRole">
+	<select id="getRoleByName" resultMap="RoleMape">
 	select * from core_role where name='${name}'
 	</select>
 	

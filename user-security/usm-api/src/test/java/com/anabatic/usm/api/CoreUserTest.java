@@ -1,4 +1,7 @@
-package com.anabatic.usm.service;
+/**
+ * 
+ */
+package com.anabatic.usm.api;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
+
+import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
@@ -22,11 +28,14 @@ import com.anabatic.usm.service.api.RoleService;
 import com.anabatic.usm.service.api.UserService;
 import com.anabatic.usm.service.impl.UserServiceImpl;
 
+/**
+ * @author ahlul.esasjana
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
-// @ContextConfiguration(classes = {AppConfig.class})
-@ContextConfiguration(locations = { "classpath:applicationContext-service-test.xml",
-		"classpath:applicationContext-persistence-test.xml" })
-public class UserServiceTest {
+@ContextConfiguration
+(locations = { "classpath:applicationContext-service-test.xml","classpath:applicationContext-persistence-test.xml","classpath:applicationContext-businesslogic-test.xml" })
+public class CoreUserTest {
 	@Autowired@Qualifier("userService")
 	private UserService userService;
 	
@@ -35,6 +44,9 @@ public class UserServiceTest {
 	
 	@Autowired
 	ConfigurationDatabase confDb;
+	
+	@Autowired @Qualifier("userValidator")
+	private IUserValidator userValidator;
 
 	@Test
 	public void test() {
@@ -196,10 +208,13 @@ public class UserServiceTest {
 			Assert.assertNotNull(user.getUsername());
 			Assert.assertNotNull(user.getPassword());
 			
-			CoreUser insertedUser = userService.getByUsername(user.getUsername());
-			Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
-			System.out.println(insertedUser.toString());
-			System.out.println(user.toString());
+			userValidator.validate(user);
+			if(!userValidator.hasError()){
+				CoreUser insertedUser = userService.getByUsername(user.getUsername());
+				Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
+				System.out.println(insertedUser.toString());
+				System.out.println(user.toString());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			MatcherAssert.assertThat(e, Matchers.equalTo(null));
