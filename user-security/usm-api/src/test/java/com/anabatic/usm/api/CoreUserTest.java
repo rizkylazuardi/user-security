@@ -34,7 +34,7 @@ import com.anabatic.usm.service.impl.UserServiceImpl;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-(locations = { "classpath:applicationContext-service-test.xml","classpath:applicationContext-persistence-test.xml" })
+(locations = { "classpath:applicationContext-service-test.xml","classpath:applicationContext-persistence-test.xml","classpath:applicationContext-businesslogic-test.xml" })
 public class CoreUserTest {
 	@Autowired@Qualifier("userService")
 	private UserService userService;

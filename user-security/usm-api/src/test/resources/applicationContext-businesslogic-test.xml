@@ -7,6 +7,6 @@
        default-lazy-init="true">
       
 
-	<bean id="userValidator" class="com.anabatic.usm.businesslogic.validator.AddUserValidator" />
+	<bean id="userValidator" class="com.anabatic.usm.businesslogic.validator.impl.UserValidatorImpl" />
     	
 </beans>
