@@ -105,7 +105,7 @@ public class MenuTest {
 		 		Assert.assertNotNull(confDb);
 				menuService.openDB();    
 				List<CoreMenu> listMenu = menuService.findAll(new CoreMenu());
-			 
+				
 				Assert.assertNotNull(listMenu);
 			} catch (Exception e) {
 				e.printStackTrace();

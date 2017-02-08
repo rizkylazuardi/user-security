@@ -18,11 +18,6 @@ import com.anabatic.usm.core.util.ErrorCode;
 public abstract class BaseValidator<T> implements IValidator<T> {
 	protected Map<String, ErrorCode> error = new HashMap<String, ErrorCode>();
 	
-	@Override
-	public void validateDelete(T object) {
-		error.clear();
-		validateDelete(object);
-	}
 
 	@Override
 	public void validate(T object) {

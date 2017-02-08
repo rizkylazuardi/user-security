@@ -76,7 +76,9 @@
 		update core_menu set "status" = #{status} where id= '${id}'
 	</update>
 	
-	
+	<select id="getAllMenu" resultMap="java.lang.Integer">
+		select count(1) from core_menu
+	</select>
 	<select id="getMenuById" resultMap="menuMap">
 	select*from Core_menu where id=#{id}
 	</select>

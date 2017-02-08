@@ -178,7 +178,7 @@ public class CoreUserTest {
 		}
 		
 	}
-	@Test
+	@Test 
 	public void insertUserTest(){
 		CoreUser user = new CoreUser();
 		user.setUsername("mimin");
