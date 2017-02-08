@@ -26,16 +26,13 @@ public class UserValidatorImpl extends BaseValidator<CoreUser> implements IUserV
 	
 	@Override
 	protected void validateObject(CoreUser object) {
-		CoreUser user = userService.getByUsername(object.getUsername());
-		if(object.getUsername()== null){
-			error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_NULL.getCode(), 
-					ErrorCodeEnum.USERNAME_NULL.getDefaultMsg()));
-			
-		}
-		if(user!=null){
-			error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_USED.getCode(), 
-					ErrorCodeEnum.USERNAME_USED.getDefaultMsg()));
-		}
+		
+			userService.openDB();
+			CoreUser user = userService.getByUsername(object.getUsername());
+			if(user!=null){
+				error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_USED.getCode(), 
+						ErrorCodeEnum.USERNAME_USED.getDefaultMsg()));
+			}
 		
 	}
 

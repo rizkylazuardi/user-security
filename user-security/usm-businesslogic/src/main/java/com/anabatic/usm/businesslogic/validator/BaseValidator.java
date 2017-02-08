@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 import com.anabatic.usm.core.util.ErrorCode;
 
 /**
@@ -17,7 +19,9 @@ import com.anabatic.usm.core.util.ErrorCode;
  */
 public abstract class BaseValidator<T> implements IValidator<T> {
 	protected Map<String, ErrorCode> error = new HashMap<String, ErrorCode>();
-	
+
+	protected static final Logger log = Logger.getLogger(BaseValidator.class);
+
 
 	@Override
 	public void validate(T object) {
