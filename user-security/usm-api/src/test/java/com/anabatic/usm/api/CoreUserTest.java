@@ -17,9 +17,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-
 import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
+import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
@@ -34,12 +33,12 @@ import com.anabatic.usm.service.impl.UserServiceImpl;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-(locations = { "classpath:applicationContext-service-test.xml","classpath:applicationContext-persistence-test.xml","classpath:applicationContext-businesslogic-test.xml" })
+(locations = { "classpath*:applicationContext-service-test.xml","classpath*:applicationContext-persistence-test.xml","classpath*:applicationContext-businesslogic-test.xml" })
 public class CoreUserTest {
-	@Autowired@Qualifier("userService")
+	@Autowired
 	private UserService userService;
 	
-	@Autowired@Qualifier("RoleService")
+	@Autowired
 	private RoleService roleService;
 	
 	@Autowired
@@ -197,23 +196,26 @@ public class CoreUserTest {
 		user.setAccountNonLocked(true);
 		user.setAccountNonExpired(true);
 		
-		Long idRole = 74L;
-		CoreRole role = roleService.getRoleByID(idRole);
-		user.setActiveRole(role);
+//		Long idRole = 74L;
+//		CoreRole role = roleService.getRoleByID(idRole);
+//		user.setActiveRole(role);
 		
 		try {
-			Assert.assertNotNull(confDb);
-			userService.openDB();
-			userService.insert(user);
-			Assert.assertNotNull(user.getUsername());
-			Assert.assertNotNull(user.getPassword());
-			
 			userValidator.validate(user);
 			if(!userValidator.hasError()){
 				CoreUser insertedUser = userService.getByUsername(user.getUsername());
 				Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
 				System.out.println(insertedUser.toString());
 				System.out.println(user.toString());
+				Assert.assertNotNull(confDb);
+				userService.openDB();
+				userService.insert(user);
+				Assert.assertNotNull(user.getUsername());
+				Assert.assertNotNull(user.getPassword());
+			}else{
+				//To know error has happened
+				//If object fail pass the validation, error Junit must happen here
+				Assert.assertNotEquals(ErrorCodeEnum.USERNAME_USED.getCode(), userValidator.getErrors().get("username").getCode());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
