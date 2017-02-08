@@ -24,10 +24,9 @@ public class ErrorCode implements Serializable{
 		super();
 	}
 
-	public ErrorCode(String code, String key, String defaultMessage) {
+	public ErrorCode(String code, String defaultMessage) {
 		super();
 		this.code = code;
-		this.key = key;
 		this.defaultMessage = defaultMessage;
 	}
 

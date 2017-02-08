@@ -1,4 +1,7 @@
-package com.anabatic.usm.service;
+/**
+ * 
+ */
+package com.anabatic.usm.api;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,7 +10,6 @@ import java.util.List;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
+
+import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
@@ -23,11 +28,14 @@ import com.anabatic.usm.service.api.RoleService;
 import com.anabatic.usm.service.api.UserService;
 import com.anabatic.usm.service.impl.UserServiceImpl;
 
+/**
+ * @author ahlul.esasjana
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
-// @ContextConfiguration(classes = {AppConfig.class})
-@ContextConfiguration(locations = { "classpath:applicationContext-service-test.xml",
-		"classpath:applicationContext-persistence-test.xml" })
-public class UserServiceTest {
+@ContextConfiguration
+(locations = { "classpath:applicationContext-service-test.xml","classpath:applicationContext-persistence-test.xml","classpath:applicationContext-businesslogic-test.xml" })
+public class CoreUserTest {
 	@Autowired@Qualifier("userService")
 	private UserService userService;
 	
@@ -37,8 +45,8 @@ public class UserServiceTest {
 	@Autowired
 	ConfigurationDatabase confDb;
 	
-	CoreUser dataUpdate = new CoreUser();
-	CoreUser dataInsert = new CoreUser();
+	@Autowired @Qualifier("userValidator")
+	private IUserValidator userValidator;
 
 	@Test
 	public void test() {
@@ -132,23 +140,6 @@ public class UserServiceTest {
 		}
 	}
 	
-	@Before
-	public void beforeUpdate(){
-		dataUpdate.setId(146L);
-		dataUpdate.setUsername("maman");
-		dataUpdate.setSecQuestion(SecurityQuestionEnum.QUESTION_BORN_PLACE);
-		dataUpdate.setSecAnswer("apartment");
-		dataUpdate.setUpdatedBy(dataUpdate.getUsername());
-		dataUpdate.setUpdatedTime(new Date());
-		dataUpdate.setActivated(true);
-		dataUpdate.setAccountEnabled(true);
-		dataUpdate.setMsisdn("08123456789113");
-		dataUpdate.setAccountNonLocked(true);
-		dataUpdate.setAccountNonExpired(true);
-
-	}
-	
-	
 	@Test
 	public void updateUserTest(){
 		CoreUser user = new CoreUser();
@@ -187,28 +178,6 @@ public class UserServiceTest {
 		}
 		
 	}
-	
-	
-	@Before
-	public void beforeInsert(){
-			dataInsert.setUsername("mimin");
-		dataInsert.setPassword("111111");
-		dataInsert.setSecQuestion(SecurityQuestionEnum.QUESTION_BORN_PLACE);
-		dataInsert.setSecAnswer("rumah");
-		dataInsert.setCreatedBy(dataInsert.getUsername());
-		dataInsert.setStatus("LIVE");
-		dataInsert.setCreatedTime(new Date());
-		dataInsert.setFirstName("Rina");
-		dataInsert.setMiddleName("Melati");
-		dataInsert.setLastName("Eliserbet");
-		dataInsert.setActivated(true);
-		dataInsert.setAccountEnabled(true);
-		dataInsert.setMsisdn("08123456789112");
-		dataInsert.setAccountNonLocked(true);
-		dataInsert.setAccountNonExpired(true);
-	
-	}
-	
 	@Test
 	public void insertUserTest(){
 		CoreUser user = new CoreUser();
@@ -239,10 +208,13 @@ public class UserServiceTest {
 			Assert.assertNotNull(user.getUsername());
 			Assert.assertNotNull(user.getPassword());
 			
-			CoreUser insertedUser = userService.getByUsername(user.getUsername());
-			Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
-			System.out.println(insertedUser.toString());
-			System.out.println(user.toString());
+			userValidator.validate(user);
+			if(!userValidator.hasError()){
+				CoreUser insertedUser = userService.getByUsername(user.getUsername());
+				Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
+				System.out.println(insertedUser.toString());
+				System.out.println(user.toString());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			MatcherAssert.assertThat(e, Matchers.equalTo(null));

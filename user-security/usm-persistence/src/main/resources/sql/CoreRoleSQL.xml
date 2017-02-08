@@ -32,7 +32,7 @@
 				"description"=#{description},
 				"description_en"=#{description_en}
 	</sql>
-	<select id="findAll" resultMap="RoleMape">
+	<select id="findAll" resultMap="RoleMap">
 		<include refid="Generic.findAll"></include>
 	</select>
 	<insert id="insert" >
@@ -42,7 +42,7 @@
 			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.RoleMapper.updateFieldName"/>
 		</include>
 	</insert>
-	<select id="get" resultMap="RoleMape">
+	<select id="get" resultMap="RoleMap">
 		<include refid="Generic.get"></include>
 	</select>
 	<delete id="delete">
@@ -60,10 +60,10 @@
 		select count(1) from core_role 
 	</select>
 	
-	<select id="getRoleById" resultMap="RoleMape">
+	<select id="getRoleById" resultMap="RoleMap">
 		select * from core_role where id=#{id}
 	</select>
-	<select id="getRoleByName" resultMap="RoleMape">
+	<select id="getRoleByName" resultMap="RoleMap">
 	select * from core_role where name='${name}'
 	</select>
 	
