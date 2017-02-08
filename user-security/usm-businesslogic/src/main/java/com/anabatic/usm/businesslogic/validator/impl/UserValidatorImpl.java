@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.anabatic.usm.businesslogic.validator.BaseValidator;
 import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
+import com.anabatic.usm.core.execption.GeneralException;
 import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.UserService;
@@ -26,11 +27,12 @@ public class UserValidatorImpl extends BaseValidator<CoreUser> implements IUserV
 	
 	@Override
 	protected void validateObject(CoreUser object) {
-		CoreUser user = userService.getByUsername(object.getUsername());
-		if(user!=null){
-			error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_USED.getCode(), 
-					ErrorCodeEnum.USERNAME_USED.getDefaultMsg()));
-		}
+			userService.openDB();
+			CoreUser user = userService.getByUsername(object.getUsername());
+			if(user!=null){
+				error.put("username", new ErrorCode(ErrorCodeEnum.USERNAME_USED.getCode(), 
+						ErrorCodeEnum.USERNAME_USED.getDefaultMsg()));
+			}
 		
 	}
 
