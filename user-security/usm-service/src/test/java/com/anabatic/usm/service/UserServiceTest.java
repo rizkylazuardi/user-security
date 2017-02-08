@@ -7,6 +7,7 @@ import java.util.List;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserServiceTest {
 	
 	@Autowired
 	ConfigurationDatabase confDb;
+	
+	CoreUser dataUpdate = new CoreUser();
+	CoreUser dataInsert = new CoreUser();
 
 	@Test
 	public void test() {
@@ -127,6 +131,23 @@ public class UserServiceTest {
 		}
 	}
 	
+	@Before
+	public void beforeUpdate(){
+		dataUpdate.setId(146L);
+		dataUpdate.setUsername("maman");
+		dataUpdate.setSecQuestion(SecurityQuestionEnum.QUESTION_BORN_PLACE);
+		dataUpdate.setSecAnswer("apartment");
+		dataUpdate.setUpdatedBy(dataUpdate.getUsername());
+		dataUpdate.setUpdatedTime(new Date());
+		dataUpdate.setActivated(true);
+		dataUpdate.setAccountEnabled(true);
+		dataUpdate.setMsisdn("08123456789113");
+		dataUpdate.setAccountNonLocked(true);
+		dataUpdate.setAccountNonExpired(true);
+
+	}
+	
+	
 	@Test
 	public void updateUserTest(){
 		CoreUser user = new CoreUser();
@@ -165,6 +186,28 @@ public class UserServiceTest {
 		}
 		
 	}
+	
+	
+	@Before
+	public void beforeInsert(){
+			dataInsert.setUsername("mimin");
+		dataInsert.setPassword("111111");
+		dataInsert.setSecQuestion(SecurityQuestionEnum.QUESTION_BORN_PLACE);
+		dataInsert.setSecAnswer("rumah");
+		dataInsert.setCreatedBy(dataInsert.getUsername());
+		dataInsert.setStatus("LIVE");
+		dataInsert.setCreatedTime(new Date());
+		dataInsert.setFirstName("Rina");
+		dataInsert.setMiddleName("Melati");
+		dataInsert.setLastName("Eliserbet");
+		dataInsert.setActivated(true);
+		dataInsert.setAccountEnabled(true);
+		dataInsert.setMsisdn("08123456789112");
+		dataInsert.setAccountNonLocked(true);
+		dataInsert.setAccountNonExpired(true);
+	
+	}
+	
 	@Test
 	public void insertUserTest(){
 		CoreUser user = new CoreUser();
