@@ -12,5 +12,17 @@ public class MenuValidatorImpl extends BaseValidator<CoreMenu> implements IMenuV
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void validateDelete(CoreMenu object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void validateEdite(CoreMenu object) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

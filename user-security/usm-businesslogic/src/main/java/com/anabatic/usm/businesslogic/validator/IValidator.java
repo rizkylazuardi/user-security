@@ -17,4 +17,5 @@ public interface IValidator<T> {
 	public boolean hasError();
 	public Map<String, ErrorCode> getErrors();
 	public boolean validateCode(String input);
+	public void validateDelete(T object);
 }

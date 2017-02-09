@@ -1,4 +1,4 @@
-package com.anabatic.usm.service;
+package com.anabatic.usm.api;
 
 import java.util.List;
 
