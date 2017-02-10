@@ -93,7 +93,7 @@ public class CoreUserTest {
 			userService.closeDB();
 		}
 	}
-
+	
 	@Test
 	public void getByIdTest() {
 		try {
