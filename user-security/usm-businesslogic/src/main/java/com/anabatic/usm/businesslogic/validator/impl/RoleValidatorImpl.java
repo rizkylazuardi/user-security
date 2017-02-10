@@ -2,6 +2,7 @@ package com.anabatic.usm.businesslogic.validator.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.anabatic.usm.businesslogic.validator.BaseValidator;
 import com.anabatic.usm.businesslogic.validator.api.IRoleValidator;
@@ -10,10 +11,10 @@ import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreRole;
 import com.anabatic.usm.service.api.RoleService;
 
-
+@Component
 public class RoleValidatorImpl extends BaseValidator<CoreRole> implements IRoleValidator {
 
-	@Autowired@Qualifier
+	@Autowired
 	private RoleService roleService;
 	
 	@Override

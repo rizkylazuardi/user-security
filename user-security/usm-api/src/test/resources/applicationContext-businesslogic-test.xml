@@ -16,5 +16,5 @@
 
 
 	<bean id="userValidator" class="com.anabatic.usm.businesslogic.validator.impl.UserValidatorImpl" />
-    	
+    <bean id="roleValidator" class="com.anabatic.usm.businesslogic.validator.impl.RoleValidatorImpl"/>
 </beans>

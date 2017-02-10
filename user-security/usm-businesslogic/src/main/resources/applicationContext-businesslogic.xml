@@ -8,5 +8,6 @@
       
 
 	<bean id="userValidator" class="com.anabatic.usm.businesslogic.validator.AddUserValidator" />
-    	
+   	<bean id="roleValidator" class="com.anabatic.usm.businesslogic.validator.impl.RoleValidatorImpl"></bean>
+   
 </beans>
