@@ -45,6 +45,7 @@ public class CoreUserTest {
 	ConfigurationDatabase confDb;
 	
 	@Autowired @Qualifier("userValidator")
+	
 	private IUserValidator userValidator;
 
 	@Test
@@ -177,7 +178,7 @@ public class CoreUserTest {
 		}
 		
 	}
-	@Test
+	@Test 
 	public void insertUserTest(){
 		CoreUser user = new CoreUser();
 		user.setUsername("mimin");
