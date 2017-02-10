@@ -31,6 +31,12 @@ public class RoleValidatorImpl extends BaseValidator<CoreRole> implements IRoleV
 		
 	}
 
+	@Override
+	public void validateDelete(CoreRole object) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 
