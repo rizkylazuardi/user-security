@@ -201,6 +201,7 @@ public class CoreUserTest {
 //		user.setActiveRole(role);
 		
 		try {
+			userService.openDB();
 			userValidator.validate(user);
 			if(!userValidator.hasError()){
 				CoreUser insertedUser = userService.getByUsername(user.getUsername());
@@ -208,7 +209,6 @@ public class CoreUserTest {
 				System.out.println(insertedUser.toString());
 				System.out.println(user.toString());
 				Assert.assertNotNull(confDb);
-				userService.openDB();
 				userService.insert(user);
 				Assert.assertNotNull(user.getUsername());
 				Assert.assertNotNull(user.getPassword());
