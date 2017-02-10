@@ -124,7 +124,7 @@ public class MenuValidatorTest {
 			menuService.closeDB();
 		}
 	}
-
+	
 	@Test
 	public void testGetAllMenu() {
 		try {
@@ -152,11 +152,11 @@ public class MenuValidatorTest {
 	@Test
 	public void updateMenuTest() {
 		CoreMenu menu = new CoreMenu();
-
+		
 		// Long idMenu = 74L;
 		// CoreMenu menu = menuService.getMenuById(idMenu);
 		// user.setActiveMenu(menu);
-
+		
 		try {
 			menuValidator.validate(menu);
 			if (!menuValidator.hasError()) {
@@ -197,13 +197,13 @@ public class MenuValidatorTest {
 		dataAdd.setAppid(1L);
 
 	}
-
+	
 	@Test
 	public void testAdd() {
 		CoreMenu menu = new CoreMenu();
 		dataAdd.setId(151L);
 		dataAdd.setDescription("Hist");
-
+		
 		try {
 			menuValidator.validate(menu);
 			if (!menuValidator.hasError()) {
@@ -213,7 +213,7 @@ public class MenuValidatorTest {
 				System.out.println(menu.toString());
 				Assert.assertNotNull(confDb);
 				menuService.openDB();
-
+				
 			} else {
 				// To know error has happened
 				// If object fail pass the validation, error Junit must happen
@@ -227,9 +227,9 @@ public class MenuValidatorTest {
 		} finally {
 			menuService.closeDB();
 		}
-
+		
 	}
-
+	
 	@Test
 	public void test() {
 		try {
