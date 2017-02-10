@@ -45,6 +45,7 @@ public class CoreUserTest {
 	ConfigurationDatabase confDb;
 	
 	@Autowired @Qualifier("userValidator")
+	
 	private IUserValidator userValidator;
 
 	@Test
