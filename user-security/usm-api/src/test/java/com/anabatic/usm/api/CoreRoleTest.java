@@ -1,5 +1,6 @@
 package com.anabatic.usm.api;
 
+
 import java.util.Date;
 
 import org.hamcrest.MatcherAssert;
@@ -40,58 +41,58 @@ public class CoreRoleTest {
 	private CoreRole dataUpdate = new CoreRole();
 	private CoreRole dataDelete = new CoreRole();
 
-//	@Test
-//	public void testGetRoleById() {
-//		try {
-//			Assert.assertNotNull(confDb);
-//			roleService.openDB();
-//			CoreRole role = new CoreRole();
-//			role.setId(123L);
-//			role = roleService.getRoleByID(role);
-//			Assert.assertNotNull(role);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			MatcherAssert.assertThat(e, Matchers.equalTo(null));
-//		} finally {
-//			roleService.closeDB();
-//
-//		}
-//	}
-//
-//	@Test
-//	public void testGetAllRole() {
-//		try {
-//			Assert.assertNotNull(confDb);
-//			roleService.openDB();
-//			List<CoreRole> listRole = roleService.findAll(new CoreRole());
-//			Assert.assertNotNull(listRole);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			MatcherAssert.assertThat(e, Matchers.equalTo(null));
-//		} finally {
-//			roleService.closeDB();
-//
-//		}
-//	}
-//
-//	@Test
-//	public void testGetRoleByName() {
-//		try {
-//			Assert.assertNotNull(confDb);
-//			roleService.openDB();
-//			CoreRole role = new CoreRole();
-//			role.setName("integer");
-//			role = roleService.getRoleByName(role);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			MatcherAssert.assertThat(e, Matchers.equalTo(null));
-//
-//		} finally {
-//
-//			roleService.closeDB();
-//
-//		}
-//	}
+	// @Test
+	// public void testGetRoleById() {
+	// try {
+	// Assert.assertNotNull(confDb);
+	// roleService.openDB();
+	// CoreRole role = new CoreRole();
+	// role.setId(123L);
+	// role = roleService.getRoleByID(role);
+	// Assert.assertNotNull(role);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
+	// } finally {
+	// roleService.closeDB();
+	//
+	// }
+	// }
+	//
+	// @Test
+	// public void testGetAllRole() {
+	// try {
+	// Assert.assertNotNull(confDb);
+	// roleService.openDB();
+	// List<CoreRole> listRole = roleService.findAll(new CoreRole());
+	// Assert.assertNotNull(listRole);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
+	// } finally {
+	// roleService.closeDB();
+	//
+	// }
+	// }
+	//
+	// @Test
+	// public void testGetRoleByName() {
+	// try {
+	// Assert.assertNotNull(confDb);
+	// roleService.openDB();
+	// CoreRole role = new CoreRole();
+	// role.setName("integer");
+	// role = roleService.getRoleByName(role);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
+	//
+	// } finally {
+	//
+	// roleService.closeDB();
+	//
+	// }
+	// }
 
 	@Before
 	public void beforeAdd() {
@@ -121,21 +122,20 @@ public class CoreRoleTest {
 			roleValidator.validate(role);
 			if (!roleValidator.hasError()) {
 				roleService.insert(dataAdd);
-				/*CoreRole addedRole = roleService.getRoleByName(role
-						.getName());
-				Assert.assertEquals(role.getName(), addedRole.getName());
-				System.out.println(addedRole.toString());
-				System.out.println(role.toString());*/
+				/*
+				 * CoreRole addedRole = roleService.getRoleByName(role
+				 * .getName()); Assert.assertEquals(role.getName(),
+				 * addedRole.getName());
+				 * System.out.println(addedRole.toString());
+				 * System.out.println(role.toString());
+				 */
 			} else {
 				// To know error has happened
 				// If object fail pass the validation, error Junit must
 				// happen here
-				Assert.assertNotEquals(
-						ErrorCodeEnum.USERNAME_USED.getCode(),
+				Assert.assertNotEquals(ErrorCodeEnum.USERNAME_USED.getCode(),
 						roleValidator.getErrors().get("username").getCode());
 			}
-
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -168,20 +168,19 @@ public class CoreRoleTest {
 		try {
 			roleValidator.validate(role);
 			if (!roleValidator.hasError()) {
-//				CoreRole updatedRole = roleService
-//						.getRoleByID(role.getId());
-//				Assert.assertEquals(role.getId(), updatedRole.getId());
-//				System.out.println(updatedRole.toString());
-//				System.out.println(role.toString());
-//				roleService.openDB();
-//				roleService.updateRoleById(role);
-//				Assert.assertNotNull(role.getId());
+				// CoreRole updatedRole = roleService
+				// .getRoleByID(role.getId());
+				// Assert.assertEquals(role.getId(), updatedRole.getId());
+				// System.out.println(updatedRole.toString());
+				// System.out.println(role.toString());
+				// roleService.openDB();
+				// roleService.updateRoleById(role);
+				// Assert.assertNotNull(role.getId());
 			} else {
 				// To know error has happened
 				// If object fail pass the validation, error Junit must
 				// happen here
-				Assert.assertNotEquals(
-						ErrorCodeEnum.USERNAME_USED.getCode(),
+				Assert.assertNotEquals(ErrorCodeEnum.USERNAME_USED.getCode(),
 						roleValidator.getErrors().get("username").getCode());
 			}
 
@@ -211,38 +210,30 @@ public class CoreRoleTest {
 		// Role.setActiveRole(role);
 
 		try {
-			roleValidator.validate(role);
-			if (!roleValidator.hasError()) {
-//				CoreRole deletedRole = roleService
-//						.getRoleByID(role.getId());
-//				Assert.assertEquals(role.getId(), deletedRole.getId());
-//				System.out.println(deletedRole.toString());
-//				System.out.println(role.toString());
-//				roleService.openDB();
-//				roleService.getRoleByID(role);
-//				Assert.assertNotNull(role.getId());
-				roleService.openDB();
-				Exception ex = null;
-				if (dataAdd.getStatus() == null
-						|| dataAdd.getStatus().equalsIgnoreCase("")) {
-					ex = new Exception("Status cannot null");
-				}
-
-				if (ex != null) {
-					throw ex;
-				} else {
+			roleService.openDB();
+			roleService.delete(dataDelete);
+			//roleValidator.validate(role);
+			//if (!roleValidator.hasError()) {
+				
+				// CoreRole deletedRole = roleService
+				// .getRoleByID(role.getId());
+				// Assert.assertEquals(role.getId(), deletedRole.getId());
+				// System.out.println(deletedRole.toString());
+				// System.out.println(role.toString());
+				// roleService.openDB();
+				// roleService.getRoleByID(role);
+				// Assert.assertNotNull(role.getId());
+				
+			//	} else {
 					// To know error has happened
 					// If object fail pass the validation, error Junit must
 					// happen here
-					Assert.assertNotEquals(
-							ErrorCodeEnum.USERNAME_USED.getCode(),
-							roleValidator.getErrors().get("username")
-									.getCode());
-				}
+				//	Assert.assertNotEquals(
+					//		ErrorCodeEnum.USERNAME_USED.getCode(),
+						//	roleValidator.getErrors().get("username").getCode());
+				//}
 
-				roleService.insert(dataDelete);
-
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			MatcherAssert.assertThat(e, Matchers.equalTo(null));

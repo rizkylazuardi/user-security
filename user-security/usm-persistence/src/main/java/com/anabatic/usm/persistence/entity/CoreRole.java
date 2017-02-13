@@ -9,6 +9,7 @@ public class CoreRole extends BaseModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4678750719114566289L;
+
 	private Long id;
 	private String name;
 	private String description;
@@ -37,8 +38,9 @@ public class CoreRole extends BaseModel {
 	public void setDescription_en(String description_en) {
 		this.description_en = description_en;
 	}
-	
-	}
+		
+
+}
 	
 	
 
