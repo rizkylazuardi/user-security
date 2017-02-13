@@ -22,10 +22,10 @@
  
  
 	<sql id="fieldNames">
-		("name","description","description_en")
+		("name","description","description_en","status","created_time","created_by")
 	</sql>
 	<sql id="valueName">
-		(#{name},#{description},#{description_en})
+		(#{name},#{description},#{description_en},'${status}',#{createdTime},'${createdBy}')
 	</sql>
 	<sql id="updateFieldName">
 				"name"=#{name},

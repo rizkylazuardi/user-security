@@ -1,6 +1,6 @@
 package com.anabatic.usm.api;
 
-import java.util.List;
+import java.util.Date;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -14,14 +14,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.anabatic.usm.businesslogic.validator.api.IRoleValidator;
+import com.anabatic.usm.core.enumeration.DataStatusEnum;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
 import com.anabatic.usm.service.api.RoleService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-// @ContextConfiguration(classes = {AppConfig.class})
-
 @ContextConfiguration(locations = {
 		"classpath*:applicationContext-service-test.xml",
 		"classpath*:applicationContext-persistence-test.xml",
@@ -32,14 +31,14 @@ public class CoreRoleTest {
 
 	@Autowired
 	ConfigurationDatabase confDb;
-
-	CoreRole dataAdd = new CoreRole();
-	CoreRole dataUpdate = new CoreRole();
-	CoreRole dataDelete = new CoreRole();
-
+	
 	@Autowired
 	@Qualifier("roleValidator")
+	
 	private IRoleValidator roleValidator;
+	private CoreRole dataAdd = new CoreRole();
+	private CoreRole dataUpdate = new CoreRole();
+	private CoreRole dataDelete = new CoreRole();
 
 //	@Test
 //	public void testGetRoleById() {
@@ -101,6 +100,10 @@ public class CoreRoleTest {
 		dataAdd.setName("name1");
 		dataAdd.setDescription("description1");
 		dataAdd.setDescription_en("description_en_1");
+		
+		dataAdd.setCreatedTime(new Date());
+		dataAdd.setCreatedBy("admin");
+		dataAdd.setStatus(DataStatusEnum.LIVE.name());
 	}
 
 	@Test
