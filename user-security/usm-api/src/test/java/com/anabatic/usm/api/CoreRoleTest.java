@@ -2,6 +2,7 @@ package com.anabatic.usm.api;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -41,58 +42,53 @@ public class CoreRoleTest {
 	private CoreRole dataUpdate = new CoreRole();
 	private CoreRole dataDelete = new CoreRole();
 
-	// @Test
-	// public void testGetRoleById() {
-	// try {
-	// Assert.assertNotNull(confDb);
-	// roleService.openDB();
-	// CoreRole role = new CoreRole();
-	// role.setId(123L);
-	// role = roleService.getRoleByID(role);
-	// Assert.assertNotNull(role);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
-	// } finally {
-	// roleService.closeDB();
-	//
-	// }
-	// }
-	//
-	// @Test
-	// public void testGetAllRole() {
-	// try {
-	// Assert.assertNotNull(confDb);
-	// roleService.openDB();
-	// List<CoreRole> listRole = roleService.findAll(new CoreRole());
-	// Assert.assertNotNull(listRole);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
-	// } finally {
-	// roleService.closeDB();
-	//
-	// }
-	// }
-	//
-	// @Test
-	// public void testGetRoleByName() {
-	// try {
-	// Assert.assertNotNull(confDb);
-	// roleService.openDB();
-	// CoreRole role = new CoreRole();
-	// role.setName("integer");
-	// role = roleService.getRoleByName(role);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// MatcherAssert.assertThat(e, Matchers.equalTo(null));
-	//
-	// } finally {
-	//
-	// roleService.closeDB();
-	//
-	// }
-	// }
+	 @Test
+	 public void testGetRoleById() {
+		 try {
+			 Assert.assertNotNull(confDb);
+			 roleService.openDB();
+			 CoreRole role = new CoreRole();
+			 role.setId(123L);
+			 role = roleService.getRoleByID(role);
+			 Assert.assertNotNull(role);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 MatcherAssert.assertThat(e, Matchers.equalTo(null));
+		 } finally {
+			 roleService.closeDB();
+		 }
+	 }
+	
+	 @Test
+	 public void testGetAllRole() {
+		 try {
+			 Assert.assertNotNull(confDb);
+			 roleService.openDB();
+			 List<CoreRole> listRole = roleService.findAll(new CoreRole());
+			 Assert.assertNotNull(listRole);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 MatcherAssert.assertThat(e, Matchers.equalTo(null));
+		 } finally {
+			 roleService.closeDB();
+		 }
+	 }
+	
+	 @Test
+	 public void testGetRoleByName() {
+		 try {
+			 Assert.assertNotNull(confDb);
+			 roleService.openDB();
+			 CoreRole role = new CoreRole();
+			 role.setName("integer");
+			 role = roleService.getRoleByName(role);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 MatcherAssert.assertThat(e, Matchers.equalTo(null));
+		 } finally {
+			 roleService.closeDB();
+		 }
+	 }
 
 	@Before
 	public void beforeAdd() {
@@ -109,19 +105,17 @@ public class CoreRoleTest {
 
 	@Test
 	public void testAdd() {
-		CoreRole role = new CoreRole();
-		dataAdd.setId(92L);
-		dataAdd.setName("name1");
-		dataAdd.setDescription("description1");
-		dataAdd.setDescription_en("description_en_1");
-		// Long idRole(92L);
-		// CoreRole role =roleService.getByName(name);
-		// role.setActiveRole(role);
+		
+		CoreRole role = new CoreRole();// ini buat apa?
+		dataAdd.setName("pretet");// ini kenapa di set lagi?? ,, kan udah di beforeAdd
+		dataAdd.setDescription("desc");//ini juga
+		dataAdd.setDescription_en("desc_en");//ini juga
 		try {
 			roleService.openDB();
-			roleValidator.validate(role);
+			roleValidator.validate(role);//yang di set objectnnya= dataAdd, kenapa yang di validate = role ?? 
 			if (!roleValidator.hasError()) {
 				roleService.insert(dataAdd);
+				//kalo ga butuh di hapus aja commentnya
 				/*
 				 * CoreRole addedRole = roleService.getRoleByName(role
 				 * .getName()); Assert.assertEquals(role.getName(),
@@ -156,18 +150,22 @@ public class CoreRoleTest {
 
 	@Test
 	public void updateRoleById() {
-		CoreRole role = new CoreRole();
+		CoreRole role = new CoreRole();//object ini buat apa?? kan udah ada object dataUpdate
 		dataUpdate.setId(123L);
 		dataUpdate.setDescription("bangjhonathan");
 		dataUpdate.setDescription_en("bangjhonathan");
-
+		
 		// Long IdRole = 123L;
 		// CoreRole role = roleService.updateRoleById (idRole);
 		// Role.setActiveRole(role);
 
 		try {
-			roleValidator.validate(role);
+			roleValidator.validate(role);//kenapa yang di validate = object role
 			if (!roleValidator.hasError()) {
+				//fungsi updatenya mana??
+				
+				
+				
 				// CoreRole updatedRole = roleService
 				// .getRoleByID(role.getId());
 				// Assert.assertEquals(role.getId(), updatedRole.getId());
@@ -201,10 +199,10 @@ public class CoreRoleTest {
 
 	@Test
 	public void testSoftDelete() {
-		CoreRole role = new CoreRole();
+		CoreRole role = new CoreRole();// kalo ga butuh diapus aja
 		dataDelete.setId(123L);
 		dataDelete.setStatus("hist");
-
+		//commentnya apus apusin aja kalo ga diperluin
 		// Long IdRole = 123L;
 		// CoreRole role = roleService.getRoleByID (idRole);
 		// Role.setActiveRole(role);
