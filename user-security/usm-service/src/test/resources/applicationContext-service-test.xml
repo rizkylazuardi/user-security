@@ -6,8 +6,8 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true">
       
-    <bean id="menuService" class="com.anabatic.usm.service.impl.MenuServiceImpl" />
-    <bean id="roleService" class="com.anabatic.usm.service.impl.RoleServiceImpl" />
-    <bean id="userService" class="com.anabatic.usm.service.impl.UserServiceImpl" />
+<!--     <bean id="menuService" class="com.anabatic.usm.service.impl.MenuServiceImpl" /> -->
+<!--     <bean id="roleService" class="com.anabatic.usm.service.impl.RoleServiceImpl" /> -->
+<!--     <bean id="userService" class="com.anabatic.usm.service.impl.UserServiceImpl" /> -->
     	
 </beans>
