@@ -14,13 +14,13 @@ import com.anabatic.usm.businesslogic.validator.api.IMenuValidator;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreMenu;
-import com.anabatic.usm.service.api.MenuService;
+import com.anabatic.usm.service.api.CoreMenuService;
 
 public class MenuValidatorTest {
 
 	@Autowired
 	@Qualifier("menuService")
-	MenuService menuService;
+	CoreMenuService menuService;
 
 	@Autowired
 	ConfigurationDatabase confDb;

@@ -9,13 +9,13 @@ import com.anabatic.usm.businesslogic.validator.api.IRoleValidator;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreRole;
-import com.anabatic.usm.service.api.RoleService;
+import com.anabatic.usm.service.api.CoreRoleService;
 
 @Component
 public class RoleValidatorImpl extends BaseValidator<CoreRole> implements IRoleValidator {
 
 	@Autowired
-	private RoleService roleService;
+	private CoreRoleService roleService;
 	
 	@Override
 	public void validateEdite(CoreRole object) {

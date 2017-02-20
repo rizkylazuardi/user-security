@@ -4,12 +4,12 @@ import org.springframework.stereotype.Service;
 
 import com.anabatic.usm.persistence.dao.RoleMapper;
 import com.anabatic.usm.persistence.entity.CoreRole;
-import com.anabatic.usm.service.api.RoleService;
+import com.anabatic.usm.service.api.CoreRoleService;
 
 	@Service
-	public  class RoleServiceImpl extends GenericManagerImpl<Long,RoleMapper , CoreRole>  implements RoleService {
+	public  class CoreRoleServiceImpl extends GenericManagerImpl<Long,RoleMapper , CoreRole>  implements CoreRoleService {
 		
-		public RoleServiceImpl() {
+		public CoreRoleServiceImpl() {
 			super(RoleMapper.class);
 		}
 

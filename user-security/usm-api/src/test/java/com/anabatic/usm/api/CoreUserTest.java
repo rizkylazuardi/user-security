@@ -23,30 +23,32 @@ import com.anabatic.usm.core.enumeration.SecurityQuestionEnum;
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
 import com.anabatic.usm.persistence.entity.CoreUser;
-import com.anabatic.usm.service.api.RoleService;
+import com.anabatic.usm.service.api.CoreRoleService;
 import com.anabatic.usm.service.api.UserService;
-import com.anabatic.usm.service.impl.UserServiceImpl;
+import com.anabatic.usm.service.impl.CoreUserServiceImpl;
 
 /**
  * @author ahlul.esasjana
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-(locations = { "classpath*:applicationContext-service-test.xml","classpath*:applicationContext-persistence-test.xml","classpath*:applicationContext-businesslogic-test.xml" })
+@ContextConfiguration(locations = {
+		"classpath*:applicationContext-service-test.xml",
+		"classpath*:applicationContext-persistence-test.xml",
+		"classpath*:applicationContext-businesslogic-test.xml" })
 public class CoreUserTest {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
-	private RoleService roleService;
-	
+	private CoreRoleService roleService;
+
 	@Autowired
 	ConfigurationDatabase confDb;
-	
-	@Autowired @Qualifier("userValidator")
-	
-	private IUserValidator userValidator;
+
+//	@Autowired
+//	@Qualifier("coreUserValidator")
+//	private IUserValidator userValidator;
 
 	@Test
 	public void test() {
@@ -69,9 +71,11 @@ public class CoreUserTest {
 
 		// assert correct type/impl
 		userService.openDB();
-		MatcherAssert.assertThat(userService, Matchers.instanceOf(UserServiceImpl.class));
+		MatcherAssert.assertThat(userService,
+				Matchers.instanceOf(CoreUserServiceImpl.class));
 		// assert true
-		MatcherAssert.assertThat(userService.getCountUser(), Matchers.greaterThanOrEqualTo(0));
+		MatcherAssert.assertThat(userService.getCountUser(),
+				Matchers.greaterThanOrEqualTo(0));
 		userService.closeDB();
 		System.out.println();
 	}
@@ -82,7 +86,7 @@ public class CoreUserTest {
 			Assert.assertNotNull(confDb);
 			userService.openDB();
 			CoreUser user = new CoreUser();
-			
+
 			user = userService.getByUsername("admin");
 			Assert.assertNotNull(user);
 			System.out.println(user.toString());
@@ -93,7 +97,7 @@ public class CoreUserTest {
 			userService.closeDB();
 		}
 	}
-	
+
 	@Test
 	public void getByIdTest() {
 		try {
@@ -109,19 +113,18 @@ public class CoreUserTest {
 		} finally {
 			userService.closeDB();
 		}
-	 }
-	 
-	 @Test
-	 public void userSoftDeleteTest(){
-		 	try {
-		 		Assert.assertNotNull(confDb);
-				userService.openDB();  
-				userService.userSoftDelete(1L);
-			}finally{
-			userService.closeDB();
-			}
-	 }
+	}
 
+	@Test
+	public void userSoftDeleteTest() {
+		try {
+			Assert.assertNotNull(confDb);
+			userService.openDB();
+			userService.userSoftDelete(1L);
+		} finally {
+			userService.closeDB();
+		}
+	}
 
 	@Test
 	public void getAllUserTest() {
@@ -139,9 +142,9 @@ public class CoreUserTest {
 			userService.closeDB();
 		}
 	}
-	
+
 	@Test
-	public void updateUserTest(){
+	public void updateUserTest() {
 		CoreUser user = new CoreUser();
 		user.setId(146L);
 		user.setUsername("maman");
@@ -154,19 +157,20 @@ public class CoreUserTest {
 		user.setMsisdn("08123456789113");
 		user.setAccountNonLocked(true);
 		user.setAccountNonExpired(true);
-		
+
 		Long idRole = 74L;
 		CoreRole role = roleService.getRoleByID(idRole);
 		user.setActiveRole(role);
-		
+
 		try {
 			Assert.assertNotNull(confDb);
 			userService.openDB();
 			userService.insert(user);
 			Assert.assertNotNull(user.getUsername());
 			Assert.assertNotNull(user.getPassword());
-			
-			CoreUser updatedUser = userService.getByUsername(user.getUsername());
+
+			CoreUser updatedUser = userService
+					.getByUsername(user.getUsername());
 			Assert.assertEquals(user.getUsername(), updatedUser.getUsername());
 			System.out.println(updatedUser.toString());
 			System.out.println(user.toString());
@@ -176,10 +180,11 @@ public class CoreUserTest {
 		} finally {
 			userService.closeDB();
 		}
-		
+
 	}
-	@Test 
-	public void insertUserTest(){
+
+	@Test
+	public void insertUserTest() {
 		CoreUser user = new CoreUser();
 		user.setUsername("mimin");
 		user.setPassword("111111");
@@ -193,37 +198,21 @@ public class CoreUserTest {
 		user.setLastName("Eliserbet");
 		user.setActivated(true);
 		user.setAccountEnabled(true);
-		user.setMsisdn("08123456789112");
+		user.setMsisdn("08123456789114");
 		user.setAccountNonLocked(true);
 		user.setAccountNonExpired(true);
+
+		// Long idRole = 74L;
+		// CoreRole role = roleService.getRoleByID(idRole);
+		// user.setActiveRole(role);
 		
-//		Long idRole = 74L;
-//		CoreRole role = roleService.getRoleByID(idRole);
-//		user.setActiveRole(role);
-		
-		try {
 			userService.openDB();
-			userValidator.validate(user);
-			if(!userValidator.hasError()){
-				CoreUser insertedUser = userService.getByUsername(user.getUsername());
-				Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
-				System.out.println(insertedUser.toString());
-				System.out.println(user.toString());
 				Assert.assertNotNull(confDb);
 				userService.insert(user);
 				Assert.assertNotNull(user.getUsername());
 				Assert.assertNotNull(user.getPassword());
-			}else{
-				//To know error has happened
-				//If object fail pass the validation, error Junit must happen here
-				Assert.assertNotEquals(ErrorCodeEnum.USERNAME_USED.getCode(), userValidator.getErrors().get("username").getCode());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));
-		} finally {
-			userService.closeDB();
+				userService.closeDB();
 		}
 		
-	}
+			
 }

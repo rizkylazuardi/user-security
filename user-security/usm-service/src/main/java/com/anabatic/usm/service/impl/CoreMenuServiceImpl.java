@@ -6,14 +6,14 @@ import com.anabatic.usm.persistence.dao.MenuMapper;
 import com.anabatic.usm.persistence.dao.UserMapper;
 import com.anabatic.usm.persistence.entity.CoreMenu;
 import com.anabatic.usm.persistence.entity.CoreUser;
-import com.anabatic.usm.service.api.MenuService;
+import com.anabatic.usm.service.api.CoreMenuService;
 import com.anabatic.usm.service.api.UserService;
 
 @Service
-public class MenuServiceImpl extends
-		GenericManagerImpl<Long, MenuMapper, CoreMenu> implements MenuService {
+public class CoreMenuServiceImpl extends
+		GenericManagerImpl<Long, MenuMapper, CoreMenu> implements CoreMenuService {
 
-	public MenuServiceImpl() {
+	public CoreMenuServiceImpl() {
 		super(MenuMapper.class);
 	}
 

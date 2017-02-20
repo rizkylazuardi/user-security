@@ -9,9 +9,9 @@ import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.UserService;
 
 @Service
-public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUser>  implements UserService {
+public class CoreUserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUser>  implements UserService {
 	
-	public UserServiceImpl() {
+	public CoreUserServiceImpl() {
 		super(UserMapper.class);
 	}
 

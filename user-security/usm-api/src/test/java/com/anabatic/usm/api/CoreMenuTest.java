@@ -15,21 +15,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreMenu;
-import com.anabatic.usm.service.api.MenuService;
-import com.anabatic.usm.service.api.UserService;
-import com.anabatic.usm.service.impl.MenuServiceImpl;
-import com.anabatic.usm.service.impl.UserServiceImpl;
+import com.anabatic.usm.service.api.CoreMenuService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {AppConfig.class})
 @ContextConfiguration(locations = {"classpath:applicationContext-service-test.xml",
 		"classpath:applicationContext-persistence-test.xml"})
-public class MenuTest {
+public class CoreMenuTest {
 	
 
 	 @Autowired
-	 @Qualifier("menuService")
-	 MenuService menuService;
+	 @Qualifier("coreMenuService")
+	 private CoreMenuService menuService;
 	 
 	 @Autowired
 	 ConfigurationDatabase confDb;
@@ -50,6 +47,7 @@ public class MenuTest {
 				CoreMenu menu = new CoreMenu();
 				menu.setId(151L);
 				menu = menuService.getMenuById(menu); 
+				System.out.println(menu.getId());
 				Assert.assertNotNull(menu);
 			} catch (Exception e) {
 				e.printStackTrace();
