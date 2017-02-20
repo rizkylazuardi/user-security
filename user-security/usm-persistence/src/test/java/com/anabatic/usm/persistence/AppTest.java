@@ -1,38 +1,40 @@
 package com.anabatic.usm.persistence;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
+
+import org.apache.ibatis.session.SqlSession;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.anabatic.usm.persistence.config.ConfigurationDatabase;
+import com.anabatic.usm.persistence.dao.UserMapper;
 
 /**
  * Unit test for simple App.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {AppConfig.class})
+@ContextConfiguration("classpath:applicationContext-persistence-test.xml")
 public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
+{	
+	@Autowired
+	ConfigurationDatabase confDb;
+   
+    @org.junit.Test
     public void testApp()
-    {
+    {	
+    	SqlSession sqlSession = confDb.dataConfig().getInstance().openSession();
+    	UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+    	
+    	int result = 0;
+		try{
+			result = mapper.getCountUser();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    	
         assertTrue( true );
     }
 }

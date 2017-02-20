@@ -9,7 +9,7 @@ import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.MenuService;
 import com.anabatic.usm.service.api.UserService;
 
-@Service("menuService")
+@Service
 public class MenuServiceImpl extends
 		GenericManagerImpl<Long, MenuMapper, CoreMenu> implements MenuService {
 

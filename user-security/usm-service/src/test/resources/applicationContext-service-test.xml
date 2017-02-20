@@ -6,12 +6,8 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true">
       
-    <!-- Scanning @Controller and @RequestMapping -->
-    <!-- <context:component-scan base-package="com.anabatic.project" /> -->
-	
-	<!-- Scanning @Service -->
-	<context:component-scan base-package="com.anabatic.usm.persistence" />
-    <context:property-placeholder location="classpath:jdbc.properties"/>
-    <context:annotation-config/>
+    <bean id="menuService" class="com.anabatic.usm.service.impl.MenuServiceImpl" />
+    <bean id="roleService" class="com.anabatic.usm.service.impl.RoleServiceImpl" />
+    <bean id="userService" class="com.anabatic.usm.service.impl.UserServiceImpl" />
     	
 </beans>

@@ -8,8 +8,10 @@
       
     <!-- Scanning @Controller and @RequestMapping -->
     <!-- <context:component-scan base-package="com.anabatic.project" /> -->
-
+	
+	<bean id="sqlSessionFactory" class="com.anabatic.usm.persistence.config.ConfigurationDatabase" />
 	<!-- Scanning @Service -->
-	<context:component-scan base-package="com.anabatic.usm.persistence" />
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:annotation-config/>
     	
 </beans>

@@ -6,7 +6,7 @@ import com.anabatic.usm.persistence.dao.RoleMapper;
 import com.anabatic.usm.persistence.entity.CoreRole;
 import com.anabatic.usm.service.api.RoleService;
 
-	@Service("roleService")
+	@Service
 	public  class RoleServiceImpl extends GenericManagerImpl<Long,RoleMapper , CoreRole>  implements RoleService {
 		
 		public RoleServiceImpl() {
