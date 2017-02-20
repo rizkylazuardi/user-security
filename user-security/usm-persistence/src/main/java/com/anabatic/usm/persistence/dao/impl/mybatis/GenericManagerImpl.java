@@ -18,7 +18,7 @@ public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<
 	@Autowired
 	ConfigurationDatabase confDB;
 	
-	protected SqlSession sqlSession = null;
+	protected SqlSession sqlSession = null;  
 	
 	protected Class<M> clazz =  null;
 	protected M dao  = null;
