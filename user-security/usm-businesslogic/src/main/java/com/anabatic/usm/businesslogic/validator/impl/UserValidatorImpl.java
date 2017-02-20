@@ -12,7 +12,7 @@ import com.anabatic.usm.businesslogic.validator.api.IUserValidator;
 import com.anabatic.usm.core.enumeration.ErrorCodeEnum;
 import com.anabatic.usm.core.util.ErrorCode;
 import com.anabatic.usm.persistence.entity.CoreUser;
-import com.anabatic.usm.service.api.UserService;
+import com.anabatic.usm.service.api.CoreUserService;
 
 /**
  * @author ahlul.esasjana
@@ -22,7 +22,7 @@ import com.anabatic.usm.service.api.UserService;
 public class UserValidatorImpl extends BaseValidator<CoreUser> implements IUserValidator{
 
 	@Autowired@Qualifier("userService")
-	private UserService userService;
+	private CoreUserService userService;
 	
 	@Override
 	protected void validateObject(CoreUser object) {

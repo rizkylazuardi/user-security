@@ -8,6 +8,6 @@
       
 <!--     <bean id="menuService" class="com.anabatic.usm.service.impl.MenuServiceImpl" /> -->
 <!--     <bean id="roleService" class="com.anabatic.usm.service.impl.RoleServiceImpl" /> -->
-<!--     <bean id="userService" class="com.anabatic.usm.service.impl.UserServiceImpl" /> -->
+    <bean id="coreUserService" class="com.anabatic.usm.service.impl.CoreUserServiceImpl" />
     	
 </beans>

@@ -77,9 +77,9 @@
 	</select>
 	<insert id="insert" >
 		<include refid="Generic.insert">
-			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.UserMapper.fieldNames"/>
-			<property name="valueName" value="com.anabatic.usm.persistence.dao.UserMapper.valueName"/>
-			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.UserMapper.updateFieldName"/>
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.CoreUserMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.CoreUserMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.CoreUserMapper.updateFieldName"/>
 		</include>
 	</insert>
 	<select id="get" resultType="CoreUser">

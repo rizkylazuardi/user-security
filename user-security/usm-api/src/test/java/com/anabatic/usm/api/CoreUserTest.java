@@ -24,7 +24,7 @@ import com.anabatic.usm.persistence.config.ConfigurationDatabase;
 import com.anabatic.usm.persistence.entity.CoreRole;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.CoreRoleService;
-import com.anabatic.usm.service.api.UserService;
+import com.anabatic.usm.service.api.CoreUserService;
 import com.anabatic.usm.service.impl.CoreUserServiceImpl;
 
 /**
@@ -38,7 +38,7 @@ import com.anabatic.usm.service.impl.CoreUserServiceImpl;
 		"classpath*:applicationContext-businesslogic-test.xml" })
 public class CoreUserTest {
 	@Autowired
-	private UserService userService;
+	private CoreUserService userService;
 
 	@Autowired
 	private CoreRoleService roleService;

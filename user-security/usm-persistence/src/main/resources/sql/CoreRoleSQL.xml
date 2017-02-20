@@ -37,9 +37,9 @@
 	</select>
 	<insert id="insert" >
 		<include refid="Generic.insert">
-			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.RoleMapper.fieldNames"/>
-			<property name="valueName" value="com.anabatic.usm.persistence.dao.RoleMapper.valueName"/>
-			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.RoleMapper.updateFieldName"/>
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.updateFieldName"/>
 		</include>
 	</insert>
 	<select id="get" resultMap="RoleMap">

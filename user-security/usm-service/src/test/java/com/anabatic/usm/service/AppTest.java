@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.anabatic.usm.service.api.UserService;
+import com.anabatic.usm.service.api.CoreUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext-service-test.xml",
@@ -16,21 +16,17 @@ import com.anabatic.usm.service.api.UserService;
 public class AppTest {
 	
     @Autowired
-    UserService service;
+    CoreUserService coreUserService;
     
 
     @Test
     public void testApp()
-    {
-    	
-    	try {
-    		service.openDB();
-    		int user = service.getCountUser();
+    {    	
+    	try {    		
+    		int user = coreUserService.getCountUser();
 		} catch (Exception e) {
 			e.printStackTrace();
 			assertFalse(e.getMessage(), true);
-		}finally{
-			service.closeDB();
 		}
     	
     	

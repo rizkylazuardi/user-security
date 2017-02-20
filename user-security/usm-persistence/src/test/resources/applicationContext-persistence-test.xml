@@ -8,6 +8,7 @@
       
     <!-- Scanning @Controller and @RequestMapping -->
     <!-- <context:component-scan base-package="com.anabatic.project" /> -->
+    <bean id="coreUserMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreUserServiceImpl" />
 	
 	<bean id="sqlSessionFactory" class="com.anabatic.usm.persistence.config.ConfigurationDatabase" />
 	<!-- Scanning @Service -->

@@ -1,5 +1,6 @@
 package com.anabatic.usm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anabatic.usm.persistence.dao.CoreMenuMapper;
@@ -7,83 +8,45 @@ import com.anabatic.usm.persistence.dao.CoreUserMapper;
 import com.anabatic.usm.persistence.entity.CoreMenu;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.CoreMenuService;
-import com.anabatic.usm.service.api.UserService;
+import com.anabatic.usm.service.api.CoreUserService;
 
 @Service
 public class CoreMenuServiceImpl extends
-		GenericManagerImpl<Long, CoreMenuMapper, CoreMenu> implements CoreMenuService {
-
-	public CoreMenuServiceImpl() {
-		super(CoreMenuMapper.class);
-	}
+		GenericManagerImpl<Long, CoreMenuMapper, CoreMenu> implements CoreMenuService {	
+	
+	private CoreMenuMapper coreMenuMapper;
+	
+	@Autowired
+	public void setCoreMenuMapper(CoreMenuMapper coreMenuMapper) {
+		this.coreMenuMapper = coreMenuMapper;
+		this.dao = coreMenuMapper;
+	}	
 
 	@Override
 	public CoreMenu getMenuById(Object param) {
-		CoreMenu result = new CoreMenu();
-		try {
-			result = dao.getMenuById(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+		return coreMenuMapper.getMenuById(param);
 	}
 
 	@Override
 	public CoreMenu getMenuByMenuCode(Object param) {
-		// TODO Auto-generated method stub
-		CoreMenu result = new CoreMenu();
-		try {
-			result = dao.getMenuByMenuCode(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
-		return result;
-
+		return coreMenuMapper.getMenuByMenuCode(param);
 	}
 
 	@Override
 	public CoreMenu getMenuByParent(Object param) {
-		// TODO Auto-generated method stub
-		CoreMenu result = new CoreMenu();
-		try {
-			result = dao.getMenuByParent(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return null;
-		}
-		return result;
-
+		return coreMenuMapper.getMenuByParent(param);
 	}
 
 	@Override
 	public boolean updateMenu(Object param) {
-		// TODO Auto-generated method stub
-		boolean result = true;
-		try {
-			result = dao.updateMenu(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return true;
-		}
-		return result;
-		
+		return coreMenuMapper.updateMenu(param);		
 	}
-
 
 	@Override
 	public boolean updateSoftDelete(Object param) {
-		// TODO Auto-generated method stub
-		boolean result = true;
-		try {
-			result = dao.updateSoftDelete(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return true;
-		}
-		return result;
+		return coreMenuMapper.updateSoftDelete(param);
 	}
+
+	
 }	
 	

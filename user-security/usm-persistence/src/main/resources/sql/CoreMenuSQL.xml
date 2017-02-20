@@ -57,10 +57,9 @@
 	</select>
 	<insert id="insert" >
 		<include refid="Generic.insert">
-			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.MenuMapper.fieldNames"/>
-	
-			<property name="valueName" value="com.anabatic.usm.persistence.dao.MenuMapper.valueName"/>
-			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.MenuMapper.updateFieldName"/>
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.CoreMenuMapper.fieldNames"/>	
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.CoreMenuMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.CoreMenuMapper.updateFieldName"/>
 		</include>
 	</insert>
 	<select id="get" resultMap="menuMap">

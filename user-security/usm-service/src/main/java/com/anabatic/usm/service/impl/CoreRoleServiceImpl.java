@@ -1,5 +1,6 @@
 package com.anabatic.usm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anabatic.usm.persistence.dao.CoreRoleMapper;
@@ -9,78 +10,36 @@ import com.anabatic.usm.service.api.CoreRoleService;
 	@Service
 	public  class CoreRoleServiceImpl extends GenericManagerImpl<Long,CoreRoleMapper , CoreRole>  implements CoreRoleService {
 		
-		public CoreRoleServiceImpl() {
-			super(CoreRoleMapper.class);
+		private CoreRoleMapper coreRoleMapper;
+		
+		@Autowired
+		public void setCoreRoleMapper(CoreRoleMapper coreRoleMapper) {
+			this.coreRoleMapper = coreRoleMapper;
+			this.dao = coreRoleMapper;
 		}
-
+		
+		
 		@Override
 		public CoreRole getRoleByID(Object param) {
-			CoreRole result =new CoreRole();
-			try {
-				result = dao.getRoleById(param);
-		
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-			return result;
+			return coreRoleMapper.getRoleById(param);
 		}
 
 		@Override
 		public CoreRole getRoleByName(Object param) {
-			// TODO Auto-generated method stub
-			CoreRole result =new CoreRole();
-			try {
-				result = dao.getRoleByName(param);
-					} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-			return result;
+			return coreRoleMapper.getRoleByName(param);
 
-		}
-
-	
-		
+		}		
 
 		@Override
 		public boolean updateRoleById(Object param) {
-			// TODO Auto-generated method stub
-		boolean result=true;
-		try{
-			result = dao.updateById(param);
-		} catch (Exception e) {
-	e.printStackTrace();
-	return true;
-		}
-		
-		return result;
-			
-			
-			
-			
-			
-
+			return coreRoleMapper.updateById(param);
 		}
 
 		@Override
-		public boolean updateSoftDelete(Object param) {
-			// TODO Auto-generated method stub
-			boolean result=true;
-			try{
-				result = dao.updateSoftDelete(param);
-			} catch (Exception e) {
-		e.printStackTrace();
-		return true;
-			}
-			
-			return result;
-				
+		public boolean updateSoftDelete(Object param) {			
+			return coreRoleMapper.updateSoftDelete(param);				
 		}
-		
-
-		
-		}
+}
 
 				
 				

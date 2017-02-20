@@ -21,19 +21,14 @@ public class AppTest
 {	
 	@Autowired
 	ConfigurationDatabase confDb;
+	
+	@Autowired
+	CoreUserMapper coreUserMapper;
    
     @org.junit.Test
     public void testApp()
     {	
-    	SqlSession sqlSession = confDb.dataConfig().getInstance().openSession();
-    	CoreUserMapper mapper = sqlSession.getMapper(CoreUserMapper.class);
-    	
-    	int result = 0;
-		try{
-			result = mapper.getCountUser();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+    	coreUserMapper.getCountUser();
     	
         assertTrue( true );
     }
