@@ -2,7 +2,7 @@ package com.anabatic.usm.persistence.dao;
 
 import com.anabatic.usm.persistence.entity.CoreRole;
 
-public interface RoleMapper extends GenericMapper<CoreRole, Long> {
+public interface CoreRoleMapper extends GenericMapper<CoreRole, Long> {
 
 	public CoreRole getRoleById (Object param);
 	public CoreRole getRoleByName (Object param);

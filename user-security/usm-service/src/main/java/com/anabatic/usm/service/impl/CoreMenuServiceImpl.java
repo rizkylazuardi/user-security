@@ -2,8 +2,8 @@ package com.anabatic.usm.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.anabatic.usm.persistence.dao.MenuMapper;
-import com.anabatic.usm.persistence.dao.UserMapper;
+import com.anabatic.usm.persistence.dao.CoreMenuMapper;
+import com.anabatic.usm.persistence.dao.CoreUserMapper;
 import com.anabatic.usm.persistence.entity.CoreMenu;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.CoreMenuService;
@@ -11,10 +11,10 @@ import com.anabatic.usm.service.api.UserService;
 
 @Service
 public class CoreMenuServiceImpl extends
-		GenericManagerImpl<Long, MenuMapper, CoreMenu> implements CoreMenuService {
+		GenericManagerImpl<Long, CoreMenuMapper, CoreMenu> implements CoreMenuService {
 
 	public CoreMenuServiceImpl() {
-		super(MenuMapper.class);
+		super(CoreMenuMapper.class);
 	}
 
 	@Override

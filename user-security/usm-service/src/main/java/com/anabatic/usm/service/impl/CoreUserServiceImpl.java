@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.anabatic.usm.persistence.dao.UserMapper;
+import com.anabatic.usm.persistence.dao.CoreUserMapper;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.UserService;
 
 @Service
-public class CoreUserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUser>  implements UserService {
+public class CoreUserServiceImpl extends GenericManagerImpl<Long,CoreUserMapper , CoreUser>  implements UserService {
 	
 	public CoreUserServiceImpl() {
-		super(UserMapper.class);
+		super(CoreUserMapper.class);
 	}
 
 	public int getCountUser() {

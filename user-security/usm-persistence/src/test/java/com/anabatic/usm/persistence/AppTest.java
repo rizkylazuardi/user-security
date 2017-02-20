@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.anabatic.usm.persistence.config.ConfigurationDatabase;
-import com.anabatic.usm.persistence.dao.UserMapper;
+import com.anabatic.usm.persistence.dao.CoreUserMapper;
 
 /**
  * Unit test for simple App.
@@ -26,7 +26,7 @@ public class AppTest
     public void testApp()
     {	
     	SqlSession sqlSession = confDb.dataConfig().getInstance().openSession();
-    	UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+    	CoreUserMapper mapper = sqlSession.getMapper(CoreUserMapper.class);
     	
     	int result = 0;
 		try{
