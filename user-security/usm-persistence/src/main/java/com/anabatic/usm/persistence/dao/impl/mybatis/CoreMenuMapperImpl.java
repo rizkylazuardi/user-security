@@ -5,28 +5,31 @@ import org.springframework.stereotype.Service;
 import com.anabatic.usm.persistence.dao.CoreMenuMapper;
 import com.anabatic.usm.persistence.entity.CoreMenu;
 
-@Service
-public class CoreMenuServiceImpl extends
+@Service("coreMenuMapper")
+public class CoreMenuMapperImpl extends
 		GenericManagerImpl<Long, CoreMenuMapper, CoreMenu> implements CoreMenuMapper {
 
-	public CoreMenuServiceImpl() {
+	public CoreMenuMapperImpl() {
 		super(CoreMenuMapper.class);
 	}
 
 	@Override
 	public CoreMenu getMenuById(Object param) {
+		this.openDB();
 		CoreMenu result = new CoreMenu();
 		try {
 			result = dao.getMenuById(param);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			this.closeDB();
 		}
 		return result;
 	}
 
 	@Override
 	public CoreMenu getMenuByMenuCode(Object param) {
-		// TODO Auto-generated method stub
+		this.openDB();
 		CoreMenu result = new CoreMenu();
 		try {
 			result = dao.getMenuByMenuCode(param);
@@ -34,6 +37,8 @@ public class CoreMenuServiceImpl extends
 			e.printStackTrace();
 
 			return null;
+		}finally{
+			this.closeDB();
 		}
 		return result;
 
@@ -41,7 +46,7 @@ public class CoreMenuServiceImpl extends
 
 	@Override
 	public CoreMenu getMenuByParent(Object param) {
-		// TODO Auto-generated method stub
+		this.openDB();
 		CoreMenu result = new CoreMenu();
 		try {
 			result = dao.getMenuByParent(param);
@@ -49,6 +54,8 @@ public class CoreMenuServiceImpl extends
 			e.printStackTrace();
 
 			return null;
+		}finally{
+			this.closeDB();
 		}
 		return result;
 
@@ -56,13 +63,15 @@ public class CoreMenuServiceImpl extends
 
 	@Override
 	public boolean updateMenu(Object param) {
-		// TODO Auto-generated method stub
+		this.openDB();
 		boolean result = true;
 		try {
 			result = dao.updateMenu(param);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;
+		}finally{
+			this.closeDB();
 		}
 		return result;
 		
@@ -71,21 +80,17 @@ public class CoreMenuServiceImpl extends
 
 	@Override
 	public boolean updateSoftDelete(Object param) {
-		// TODO Auto-generated method stub
+		this.openDB();
 		boolean result = true;
 		try {
 			result = dao.updateSoftDelete(param);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;
+		}finally{
+			this.closeDB();
 		}
 		return result;
-	}
-
-	@Override
-	public boolean deleteByDimas(Object param) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }	
 	

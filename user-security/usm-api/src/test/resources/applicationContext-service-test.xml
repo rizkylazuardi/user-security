@@ -14,7 +14,7 @@
 <!-- 	<context:component-scan base-package="com.anabatic.usm.service.impl" /> -->
 	  <bean id="coreMenuService" class="com.anabatic.usm.service.impl.CoreMenuServiceImpl" /> 
 	  <bean id="coreRoleService" class="com.anabatic.usm.service.impl.CoreRoleServiceImpl" /> 
-	   <bean id="coreUserService" class="com.anabatic.usm.service.impl.CoreUserServiceImpl" /> 
+	  <bean id="coreUserService" class="com.anabatic.usm.service.impl.CoreUserServiceImpl" /> 
 	  
 	  
 </beans>

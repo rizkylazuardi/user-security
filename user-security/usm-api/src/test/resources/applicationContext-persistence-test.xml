@@ -14,5 +14,7 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <context:annotation-config/>
     <bean id="sqlSessionFactory" class="com.anabatic.usm.persistence.config.ConfigurationDatabase" />
-    	
+    <bean id="coreMenuMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreMenuMapperImpl" />
+    <bean id="coreRoleMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreRoleMapperImpl" />
+    <bean id="coreUserMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreUserMapperImpl" />	
 </beans>

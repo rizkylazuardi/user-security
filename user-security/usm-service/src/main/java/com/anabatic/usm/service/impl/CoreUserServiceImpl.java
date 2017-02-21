@@ -8,7 +8,7 @@ import com.anabatic.usm.persistence.dao.CoreUserMapper;
 import com.anabatic.usm.persistence.entity.CoreUser;
 import com.anabatic.usm.service.api.CoreUserService;
 
-@Service
+@Service("coreUserService")
 public class CoreUserServiceImpl extends GenericManagerImpl<Long,CoreUserMapper , CoreUser>  implements CoreUserService {
 	
 	private CoreUserMapper coreUserMapper;

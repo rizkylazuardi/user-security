@@ -4,7 +4,6 @@
 package com.anabatic.usm.businesslogic.validator.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.anabatic.usm.businesslogic.validator.BaseValidator;
@@ -21,7 +20,7 @@ import com.anabatic.usm.service.api.CoreUserService;
 @Component
 public class UserValidatorImpl extends BaseValidator<CoreUser> implements IUserValidator{
 
-	@Autowired@Qualifier("userService")
+	@Autowired 
 	private CoreUserService userService;
 	
 	@Override
