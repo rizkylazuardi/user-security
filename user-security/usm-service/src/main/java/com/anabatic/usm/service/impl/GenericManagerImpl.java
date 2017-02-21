@@ -33,23 +33,22 @@ public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<
         this.dao = genericDao;
     }
 
-	
-	@SuppressWarnings("unchecked")
+	@Override
 	public List<T> findAll(T object) {
 		return dao.findAll(object);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public void insert(T record) {
 		dao.insert(record);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public T get(T object) {
 		return dao.get(object);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public void delete(T object) {
 		dao.delete(object);
 	}

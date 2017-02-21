@@ -46,41 +46,59 @@ public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findAll(T object) {
+		this.openDB();
 		try {
 			object = (T) GenericObjectUtil.setGenericObjectValue(object);
+			return dao.findAll(object);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
+		}finally{
+			this.closeDB();
 		}
-		return dao.findAll(object);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	public void insert(T record) {
+		this.openDB();
 		try {
 			record = (T) GenericObjectUtil.setGenericObjectValue(record);
+			dao.insert(record);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			this.closeDB();
 		}
-		dao.insert(record);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	public T get(T object) {
+		this.openDB();
 		try {
 			object = (T) GenericObjectUtil.setGenericObjectValue(object);
+			return dao.get(object);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
+		}finally{
+			this.closeDB();
 		}
-		return dao.get(object);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	public void delete(T object) {
+		this.openDB();
 		try {
 			object = (T) GenericObjectUtil.setGenericObjectValue(object);
+			dao.delete(object);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			this.closeDB();
 		}
-		dao.delete(object);
+		
 	}
 }

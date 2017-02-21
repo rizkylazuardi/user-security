@@ -17,6 +17,7 @@ public class CoreMenuServiceImpl extends
 	@Autowired
 	public void setCoreMenuMapper(CoreMenuMapper coreMenuMapper) {
 		this.coreMenuMapper = coreMenuMapper;
+		this.dao = coreMenuMapper;
 	}	
 
 	@Override
