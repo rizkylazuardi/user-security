@@ -1,24 +1,25 @@
-package com.anabatic.usm.service.impl;
+package com.anabatic.usm.persistence.dao.impl.mybatis;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.anabatic.usm.persistence.dao.UserMapper;
+import com.anabatic.usm.persistence.dao.CoreUserMapper;
 import com.anabatic.usm.persistence.entity.CoreUser;
-import com.anabatic.usm.service.api.UserService;
 
-@Service("userService")
-public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUser>  implements UserService {
+@Component
+public class CoreUserServiceImpl extends GenericManagerImpl<Long,CoreUserMapper , CoreUser>  implements CoreUserMapper {
 	
-	public UserServiceImpl() {
-		super(UserMapper.class);
+	public CoreUserServiceImpl() {
+		super(CoreUserMapper.class);
 	}
 
 	public int getCountUser() {
 		int result = 0;
 		try{
+			openDB();
 			result = dao.getCountUser();
+			closeDB();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -69,5 +70,11 @@ public class UserServiceImpl extends GenericManagerImpl<Long,UserMapper , CoreUs
 			return result;
 		}
 		return result;
+	}
+
+	@Override
+	public boolean updateCoreUser() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

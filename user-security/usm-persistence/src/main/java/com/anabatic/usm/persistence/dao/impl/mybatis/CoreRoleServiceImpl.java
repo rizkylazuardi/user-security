@@ -1,20 +1,19 @@
-package com.anabatic.usm.service.impl;
+package com.anabatic.usm.persistence.dao.impl.mybatis;
 
 import org.springframework.stereotype.Service;
 
-import com.anabatic.usm.persistence.dao.RoleMapper;
+import com.anabatic.usm.persistence.dao.CoreRoleMapper;
 import com.anabatic.usm.persistence.entity.CoreRole;
-import com.anabatic.usm.service.api.RoleService;
 
-	@Service("roleService")
-	public  class RoleServiceImpl extends GenericManagerImpl<Long,RoleMapper , CoreRole>  implements RoleService {
+	@Service
+	public  class CoreRoleServiceImpl extends GenericManagerImpl<Long,CoreRoleMapper , CoreRole>  implements CoreRoleMapper {
 		
-		public RoleServiceImpl() {
-			super(RoleMapper.class);
+		public CoreRoleServiceImpl() {
+			super(CoreRoleMapper.class);
 		}
 
 		@Override
-		public CoreRole getRoleByID(Object param) {
+		public CoreRole getRoleById(Object param) {
 			CoreRole result =new CoreRole();
 			try {
 				result = dao.getRoleById(param);
@@ -38,29 +37,20 @@ import com.anabatic.usm.service.api.RoleService;
 			}
 			return result;
 
-		}
-
-	
-		
+		}		
 
 		@Override
-		public boolean updateRoleById(Object param) {
+		public boolean updateById(Object param) {
 			// TODO Auto-generated method stub
-		boolean result=true;
-		try{
-			result = dao.updateById(param);
-		} catch (Exception e) {
-	e.printStackTrace();
-	return true;
-		}
-		
-		return result;
+			boolean result=true;
+			try{
+				result = dao.updateById(param);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return true;
+			}
 			
-			
-			
-			
-			
-
+			return result;
 		}
 
 		@Override
@@ -77,10 +67,7 @@ import com.anabatic.usm.service.api.RoleService;
 			return result;
 				
 		}
-		
-
-		
-		}
+}
 
 				
 				

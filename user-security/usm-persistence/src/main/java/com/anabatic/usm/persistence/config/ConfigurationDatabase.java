@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 
 
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Scope;
  * @author 3AS 2016
  */
 @Configuration
-@PropertySource("classpath:jdbc.properties")
 public class ConfigurationDatabase {
 	
 	@Value("${jdbc.driver}")

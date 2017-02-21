@@ -11,6 +11,10 @@
 	<context:annotation-config />
 	<!-- Scanning @Service -->
 <!-- 	<context:component-scan base-package="com.anabatic.usm.service" /> -->
-	<context:component-scan base-package="com.anabatic.usm.service.impl" />
-    	
+<!-- 	<context:component-scan base-package="com.anabatic.usm.service.impl" /> -->
+	  <bean id="coreMenuService" class="com.anabatic.usm.service.impl.CoreMenuServiceImpl" /> 
+	  <bean id="coreRoleService" class="com.anabatic.usm.service.impl.CoreRoleServiceImpl" /> 
+	   <bean id="coreUserService" class="com.anabatic.usm.service.impl.CoreUserServiceImpl" /> 
+	  
+	  
 </beans>

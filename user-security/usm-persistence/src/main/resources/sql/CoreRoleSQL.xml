@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.anabatic.usm.persistence.dao.RoleMapper">
+<mapper namespace="com.anabatic.usm.persistence.dao.CoreRoleMapper">
 	<cache />
 	
 	
@@ -37,9 +37,9 @@
 	</select>
 	<insert id="insert" >
 		<include refid="Generic.insert">
-			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.RoleMapper.fieldNames"/>
-			<property name="valueName" value="com.anabatic.usm.persistence.dao.RoleMapper.valueName"/>
-			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.RoleMapper.updateFieldName"/>
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.CoreRoleMapper.updateFieldName"/>
 		</include>
 	</insert>
 	<select id="get" resultMap="RoleMap">

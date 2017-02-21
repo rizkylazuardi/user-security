@@ -8,8 +8,13 @@
       
     <!-- Scanning @Controller and @RequestMapping -->
     <!-- <context:component-scan base-package="com.anabatic.project" /> -->
-
+    <bean id="coreUserMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreUserServiceImpl" />
+    <bean id="coreRoleMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreRoleServiceImpl" />
+    <bean id="coreMenuMapper" class="com.anabatic.usm.persistence.dao.impl.mybatis.CoreMenuServiceImpl" />
+	
+	<bean id="sqlSessionFactory" class="com.anabatic.usm.persistence.config.ConfigurationDatabase" />
 	<!-- Scanning @Service -->
-	<context:component-scan base-package="com.anabatic.usm.service.impl" />
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:annotation-config/>
     	
 </beans>

@@ -1,20 +1,16 @@
-package com.anabatic.usm.service.impl;
+package com.anabatic.usm.persistence.dao.impl.mybatis;
 
 import org.springframework.stereotype.Service;
 
-import com.anabatic.usm.persistence.dao.MenuMapper;
-import com.anabatic.usm.persistence.dao.UserMapper;
+import com.anabatic.usm.persistence.dao.CoreMenuMapper;
 import com.anabatic.usm.persistence.entity.CoreMenu;
-import com.anabatic.usm.persistence.entity.CoreUser;
-import com.anabatic.usm.service.api.MenuService;
-import com.anabatic.usm.service.api.UserService;
 
-@Service("menuService")
-public class MenuServiceImpl extends
-		GenericManagerImpl<Long, MenuMapper, CoreMenu> implements MenuService {
+@Service
+public class CoreMenuServiceImpl extends
+		GenericManagerImpl<Long, CoreMenuMapper, CoreMenu> implements CoreMenuMapper {
 
-	public MenuServiceImpl() {
-		super(MenuMapper.class);
+	public CoreMenuServiceImpl() {
+		super(CoreMenuMapper.class);
 	}
 
 	@Override
@@ -84,6 +80,12 @@ public class MenuServiceImpl extends
 			return true;
 		}
 		return result;
+	}
+
+	@Override
+	public boolean deleteByDimas(Object param) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }	
 	
