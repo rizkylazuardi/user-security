@@ -205,12 +205,13 @@ public class CoreUserTest {
 			userService.openDB();
 			userValidator.validate(user);
 			if(!userValidator.hasError()){
+				userService.insert(user);
+				
 				CoreUser insertedUser = userService.getByUsername(user.getUsername());
 				Assert.assertEquals(user.getUsername(), insertedUser.getUsername());
 				System.out.println(insertedUser.toString());
 				System.out.println(user.toString());
 				Assert.assertNotNull(confDb);
-				userService.insert(user);
 				Assert.assertNotNull(user.getUsername());
 				Assert.assertNotNull(user.getPassword());
 			}else{
